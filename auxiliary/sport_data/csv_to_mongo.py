@@ -24,4 +24,4 @@ for filename in filepaths:
                 for field in header:
 
                     row[field] = el[field]
-                db[coll_name].insert_one(row)
+                db[coll_name].replace_one(row, row, upsert=True)
