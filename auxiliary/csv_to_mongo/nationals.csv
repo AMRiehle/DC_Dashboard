@@ -1,4 +1,4 @@
-Year,Tm,Lg,G,W,L,W-L%,Finish,Playoffs,R,RA,Attendance,BatAge,PAge,#Bat,#P,Top Player,Managers
+Year,Tm,Lg,G,W,L,W-L%,Finish,Playoffs,R,RA,Attendance,BatAge,PAge,#Bat,#P,Topplayer,Managers
 2018,Washington Nationals,NL East,68,37,30,0.552,2nd of 5,,287,239,965392,27.8,31,43,21,M.Scherzer (4.1),D.Martinez (37-30)
 2017,Washington Nationals,NL East,162,97,65,0.599,1st of 5,Lost LDS (3-2),819,672,2524980,29.2,30.1,49,24,M.Scherzer (7.4),D.Baker (97-65)
 2016,Washington Nationals,NL East,162,95,67,0.586,1st of 5,Lost LDS (3-2),763,612,2481938,28.8,29.1,43,24,M.Scherzer (6.5),D.Baker (95-67)
@@ -42,10 +42,3 @@ Year,Tm,Lg,G,W,L,W-L%,Finish,Playoffs,R,RA,Attendance,BatAge,PAge,#Bat,#P,Top Pl
 1978,Montreal Expos,NL East,162,76,86,0.469,4th of 6,,633,611,1427007,27.2,28.9,36,18,G.Carter (5.8),D.Williams (76-86)
 1977,Montreal Expos,NL East,162,75,87,0.463,5th of 6,,665,736,1433757,26.4,26.9,37,17,G.Carter (5.4),D.Williams (75-87)
 1976,Montreal Expos,NL East,162,55,107,0.34,6th of 6,,531,734,646704,25.1,27.4,47,19,S.Rogers (4.6),K.Kuehl (43-85) and C.Fox (12-22)
-1975,Montreal Expos,NL East,162,75,87,0.463,5th of 6,,601,690,908292,24.7,26.8,38,14,S.Rogers (4.8),G.Mauch (75-87)
-1974,Montreal Expos,NL East,161,79,82,0.491,4th of 6,,662,657,1019134,27.7,25.8,41,14,M.Jorgensen (4.2),G.Mauch (79-82)
-1973,Montreal Expos,NL East,162,79,83,0.488,4th of 6,,668,702,1246863,27.7,26.2,41,15,K.Singleton (5.7),G.Mauch (79-83)
-1972,Montreal Expos,NL East,156,70,86,0.449,5th of 6,,513,609,1142145,26.9,25.9,30,12,M.Marshall (4.0),G.Mauch (70-86)
-1971,Montreal Expos,NL East,162,71,90,0.441,5th of 6,,622,729,1290963,28.3,27,33,12,R.Staub (6.0),G.Mauch (71-90)
-1970,Montreal Expos,NL East,162,73,89,0.451,6th of 6,,687,807,1424683,27.7,26.7,40,17,R.Staub (6.3),G.Mauch (73-89)
-1969,Montreal Expos,NL East,162,52,110,0.321,6th of 6,,582,791,1212608,27.6,26.8,42,18,R.Staub (6.2),G.Mauch (52-110)

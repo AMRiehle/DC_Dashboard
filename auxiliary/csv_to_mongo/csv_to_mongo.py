@@ -5,7 +5,7 @@ import pymongo
 conn = 'mongodb://localhost:27017'
 client = pymongo.MongoClient(conn)
 
-db = client.dc_dashboard_dc
+db = client.dc_dashboard
 
 filepaths = glob.glob('*.csv')
 
