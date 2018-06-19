@@ -6,24 +6,16 @@ dc_dashboard = Flask(__name__)
 mongo = PyMongo(dc_dashboard)
 
 
-@dc_dashboard.route("/")
-def index():
+@dc_dashboard.route("/sports")
+def sports():
+    from functions import getCapsNatsData
 
-    caps = []
-    for line in mongo.db.capitals.find():
-        line.pop('_id') #id is not a string and can't be jsonified
-        caps.append(line)
+    capsdata = mongo.db.capitals.find()
+    natsdata = mongo.db.nationals.find()
     
-    # caps = [(line.pop('_id'))for line in mongo.db.capitals.find()]
-    c_years = [line['Season'] for line in caps]
-    c_wins = [int(line['W']) for line in caps]
-    c_attendance = [int(line['Attendance']) for line in caps]
-    c_playoffs = [line['Playoffs'] for line in caps]
+    all_data = getCapsNatsData(capsdata, natsdata)
 
-    capsdict = {'years': c_years, 'wins': c_wins, 'attendance': c_attendance, 'comments': c_playoffs}
-
-
-    return jsonify(capsdict)
+    return jsonify(all_data)
 
 
 if __name__ == "__main__":
