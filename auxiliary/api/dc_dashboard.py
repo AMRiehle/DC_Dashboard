@@ -5,6 +5,11 @@ from flask_pymongo import PyMongo
 dc_dashboard = Flask(__name__)
 mongo = PyMongo(dc_dashboard)
 
+@dc_dashboard.route('/')
+def index():
+
+    return render_template("index.html")
+
 
 @dc_dashboard.route("/sports")
 def sports():
