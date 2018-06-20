@@ -171,6 +171,7 @@ function makeResponsive() {
         .attr("stroke", "#5DDEC9")
         .call(rightAxis);
 
+        //add Attendance bars
         chartGroup.append("g")
         .selectAll("g")
         .data(data)
@@ -183,78 +184,67 @@ function makeResponsive() {
         .attr("y", function(d) { return yLinearScale2(d.value); })
         .attr("width", width/data.length*0.4)
         .attr("height", function(d) { return height - yLinearScale2(d.value); })
-        .attr("fill", function(d) { return color(d.key); })
+        .attr("fill", "#5DDEC9")
         .attr('class', 'bars');
 
-        // var barG = chartGroup.append("g")
-        // .selectAll("g")
-        // .data(data)
-        // .enter().append("g")
-        // .attr("transform", function(d) { return "translate(" + xTimeScale(d.Year) + ",0)"; })
+        function renderPerf(data, chosenY) {
 
-        // var rectangles = barG
-        // .selectAll("rect")
-        // .data(d => {return d})
-        // .enter().append("rect")
-        // // .attr("transform", function(d) { return "translate(" + xTimeScale(d.Year) + ",0)"; })
-        // .attr("x", 5)
-        // .attr("y", function(d) { return yLinearScale2(d.value); })
-        // .attr("width", width/data.length*0.4)
-        // .attr("height", yLinearScale2)
-        // .attr("fill", function(d) { return color(d.key); })
-        // .attr('class', 'bars');
+            var bars = d3.selectAll('.resultbars');
+            bars.remove();
 
-        function renderPerf(data) {
             chartGroup.append("g")
-        .selectAll("g")
-        .data(data)
-        .enter()
-        .append("g")
-        .attr("transform", function(d) { return "translate(" + xTimeScale(d.Year) + ",0)"; })
-        .selectAll("rect")
-        .data(function(d) {
-            if (chosenY === "W") {
-                win = ['W']; 
-                return win.map(function(key) { return {key: key, value: d[key]}; });
-            }
-            else if (chosenY === 'L') {
-                win = ['L'];
-                return win.map(function(key) { return {key: key, value: d[key]}; });
-            }
-        })
-        .enter()
-        .append("rect")
-        .attr("y", function(d) { return yLinearScale1(d.value); })
-        .attr("width", width/data.length*0.4)
-        .attr("height", function(d) { return height - yLinearScale1(d.value); })
-        .attr("fill", function(d) { return color(d.key); })
-        .attr('class', 'resultbars');
+            .selectAll("g")
+            .data(data)
+            .enter()
+            .append("g")
+            .attr("transform", function(d) { return "translate(" + xTimeScale(d.Year) + ",0)"; })
+            .selectAll("rect")
+            .data(function(d) {
+                if (chosenY === "W") {
+                    win = ['W']; 
+                    return win.map(function(key) { return {key: key, value: d[key]}; });
+                }
+                else if (chosenY === 'L') {
+                    win = ['L'];
+                    return win.map(function(key) { return {key: key, value: d[key]}; });
+                }
+            })
+            .enter()
+            .append("rect")
+            .attr("y", function(d) { return yLinearScale1(d.value); })
+            .attr("width", width/data.length*0.4)
+            .attr("height", function(d) { return height - yLinearScale1(d.value); })
+            .attr("fill", "#EF64AD")
+            .attr('class', 'resultbars');
+        
         }
 
-        chartGroup.append("g")
-        .selectAll("g")
-        .data(data)
-        .enter()
-        .append("g")
-        .attr("transform", function(d) { return "translate(" + xTimeScale(d.Year) + ",0)"; })
-        .selectAll("rect")
-        .data(function(d) {
-            if (chosenY === "W") {
-                win = ['W']; 
-                return win.map(function(key) { return {key: key, value: d[key]}; });
-            }
-            else if (chosenY === 'L') {
-                win = ['L'];
-                return win.map(function(key) { return {key: key, value: d[key]}; });
-            }
-        })
-        .enter()
-        .append("rect")
-        .attr("y", function(d) { return yLinearScale1(d.value); })
-        .attr("width", width/data.length*0.4)
-        .attr("height", function(d) { return height - yLinearScale1(d.value); })
-        .attr("fill", function(d) { return color(d.key); })
-        .attr('class', 'resultbars');
+        renderPerf(data, chosenY);
+
+        // chartGroup.append("g")
+        // .selectAll("g")
+        // .data(data)
+        // .enter()
+        // .append("g")
+        // .attr("transform", function(d) { return "translate(" + xTimeScale(d.Year) + ",0)"; })
+        // .selectAll("rect")
+        // .data(function(d) {
+        //     if (chosenY === "W") {
+        //         win = ['W']; 
+        //         return win.map(function(key) { return {key: key, value: d[key]}; });
+        //     }
+        //     else if (chosenY === 'L') {
+        //         win = ['L'];
+        //         return win.map(function(key) { return {key: key, value: d[key]}; });
+        //     }
+        // })
+        // .enter()
+        // .append("rect")
+        // .attr("y", function(d) { return yLinearScale1(d.value); })
+        // .attr("width", width/data.length*0.4)
+        // .attr("height", function(d) { return height - yLinearScale1(d.value); })
+        // .attr("fill", function(d) { return color(d.key); })
+        // .attr('class', 'resultbars');
 
         var resultBarsGroup = d3.selectAll('.resultbars');
         var attBarsGroup = d3.selectAll('.bars');
@@ -348,6 +338,7 @@ function makeResponsive() {
 
                 yLinearScale1 = yScale(data, chosenY);
                 yAxis = renderYAxis(yLinearScale1, yAxis);
+                renderPerf(data, chosenY);
                 resultBarsGroup = renderBarsY(resultBarsGroup, yLinearScale1)
                 attBarsGroup = renderBarsY2(attBarsGroup, yLinearScale2)
             }
