@@ -30,15 +30,26 @@ function makeResponsive() {
     // var chartGroup = svg.append("g")
     //     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-    
+    var chosenY = 'W';
     var chosenX = 'capitals';
+    var year = 'Year';
+    var att = ['Attendance']
+    var win = ['W']
 
     function yScale(alldata, chosenY) {
         var yLinearScale = d3.scaleLinear()
         .domain([d3.min(alldata, d => d[chosenY]), d3.max(alldata, d => d[chosenY])]).nice()
         .range([height, 0]);
 
-        return yLinearScale
+        return yLinearScale;
+    }
+
+    function xScale(alldata, x) {
+        var xTimeScale = d3.scaleTime()
+        .domain(d3.extent(alldata, d => d[x])).nice()
+        .range([0, width]);
+
+        return xTimeScale;
     }
 
     function renderYAxis(newYScale, yAxis) {
@@ -48,6 +59,15 @@ function makeResponsive() {
         .call(leftAxis);
     
         return yAxis;
+    }
+
+    function renderXAxis(newXScale, xAxis) {
+        var bottomAxis = d3.axisBottom(newXScale);
+        xAxis.transition()
+        .duration(1000)
+        .call(bottomAxis);
+    
+        return bottomAxis;
     }
 
     function renderBarsY(barsGroup, newYScale) {
@@ -80,7 +100,6 @@ function makeResponsive() {
         return barsGroup;
     }
 
-
     d3.json('/sports', responce => {
 
         var parseTime = d3.timeParse("%Y")
@@ -99,7 +118,7 @@ function makeResponsive() {
         // .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
         function renderGraph(data) {
-            var chosenY = 'W';
+            
 
             var chartGroup = svg.append("g")
             .attr("transform", `translate(${margin.left}, ${margin.top})`)
@@ -118,6 +137,7 @@ function makeResponsive() {
         .domain(d3.extent(data, d => d.Year)).nice()
         .range([0, width]);
 
+        // var xTimeScale = xScale(data, year)
         var yLinearScale1 = yScale(data, chosenY);
 
         var yLinearScale2 = d3.scaleLinear()
@@ -151,9 +171,6 @@ function makeResponsive() {
         .attr("stroke", "#5DDEC9")
         .call(rightAxis);
 
-        var att = ['Attendance']
-        var win = ['W']
-
         chartGroup.append("g")
         .selectAll("g")
         .data(data)
@@ -169,6 +186,51 @@ function makeResponsive() {
         .attr("fill", function(d) { return color(d.key); })
         .attr('class', 'bars');
 
+        // var barG = chartGroup.append("g")
+        // .selectAll("g")
+        // .data(data)
+        // .enter().append("g")
+        // .attr("transform", function(d) { return "translate(" + xTimeScale(d.Year) + ",0)"; })
+
+        // var rectangles = barG
+        // .selectAll("rect")
+        // .data(d => {return d})
+        // .enter().append("rect")
+        // // .attr("transform", function(d) { return "translate(" + xTimeScale(d.Year) + ",0)"; })
+        // .attr("x", 5)
+        // .attr("y", function(d) { return yLinearScale2(d.value); })
+        // .attr("width", width/data.length*0.4)
+        // .attr("height", yLinearScale2)
+        // .attr("fill", function(d) { return color(d.key); })
+        // .attr('class', 'bars');
+
+        function renderPerf(data) {
+            chartGroup.append("g")
+        .selectAll("g")
+        .data(data)
+        .enter()
+        .append("g")
+        .attr("transform", function(d) { return "translate(" + xTimeScale(d.Year) + ",0)"; })
+        .selectAll("rect")
+        .data(function(d) {
+            if (chosenY === "W") {
+                win = ['W']; 
+                return win.map(function(key) { return {key: key, value: d[key]}; });
+            }
+            else if (chosenY === 'L') {
+                win = ['L'];
+                return win.map(function(key) { return {key: key, value: d[key]}; });
+            }
+        })
+        .enter()
+        .append("rect")
+        .attr("y", function(d) { return yLinearScale1(d.value); })
+        .attr("width", width/data.length*0.4)
+        .attr("height", function(d) { return height - yLinearScale1(d.value); })
+        .attr("fill", function(d) { return color(d.key); })
+        .attr('class', 'resultbars');
+        }
+
         chartGroup.append("g")
         .selectAll("g")
         .data(data)
@@ -176,10 +238,18 @@ function makeResponsive() {
         .append("g")
         .attr("transform", function(d) { return "translate(" + xTimeScale(d.Year) + ",0)"; })
         .selectAll("rect")
-        .data(function(d) { return win.map(function(key) { return {key: key, value: d[key]}; }); })
-        .enter().append("rect")
-        // .attr("x", function(d,i) { return xTimeScale(i); })
-        // .attr("x", function(d) { return x1(d.key); })
+        .data(function(d) {
+            if (chosenY === "W") {
+                win = ['W']; 
+                return win.map(function(key) { return {key: key, value: d[key]}; });
+            }
+            else if (chosenY === 'L') {
+                win = ['L'];
+                return win.map(function(key) { return {key: key, value: d[key]}; });
+            }
+        })
+        .enter()
+        .append("rect")
         .attr("y", function(d) { return yLinearScale1(d.value); })
         .attr("width", width/data.length*0.4)
         .attr("height", function(d) { return height - yLinearScale1(d.value); })
@@ -251,15 +321,33 @@ function makeResponsive() {
 
         ylabelsGroup.selectAll("text")
             .on("click", function() {
-            // get value of selection
             var value = d3.select(this).attr("value");
+
             if (value != chosenY) {
                 chosenY = value;
                 console.log(chosenY);
 
+                if (chosenY === "W") {
+                    
+                    yLabel1
+                    .classed("active", true)
+                    .classed("inactive", false);
+                    yLabel2
+                    .classed("active", false)
+                    .classed("inactive", true);
+                }
+                else {
+                    
+                    yLabel2
+                    .classed("active", true)
+                    .classed("inactive", false);
+                    yLabel1
+                    .classed("active", false)
+                    .classed("inactive", true);
+                }
+
                 yLinearScale1 = yScale(data, chosenY);
                 yAxis = renderYAxis(yLinearScale1, yAxis);
-
                 resultBarsGroup = renderBarsY(resultBarsGroup, yLinearScale1)
                 attBarsGroup = renderBarsY2(attBarsGroup, yLinearScale2)
             }
@@ -267,26 +355,26 @@ function makeResponsive() {
 
         xlabelsGroup.selectAll("text")
             .on("click", function() {
-            // get value of selection
-            var value = d3.select(this).attr("value");
-            if (value != chosenX) {
-                chosenX = value;
-            if (chosenX === 'capitals') {
-                data = responce[0];
-            }
-            else {
-                data = responce[1];
-            }
-            changeTeam(data);
-            console.log(chosenX);
+            
+                var value = d3.select(this).attr("value");
+                if (value != chosenX) {
+                    chosenX = value;
+                
+                    if (chosenX === 'capitals') {
+                        data = responce[0];
+                    }
+                    else if (chosenX === 'nationals') {
+                        data = responce[1];
+                    };
 
-                // yLinearScale1 = yScale(data, chosenY);
-                // yAxis = renderYAxis(yLinearScale1, yAxis);
-
-                // resultBarsGroup = renderBarsY(resultBarsGroup, yLinearScale1)
-                // attBarsGroup = renderBarsY2(attBarsGroup, yLinearScale2)
-            }
-        })
+                    year = 'Year';
+                    changeTeam(data);
+                    console.log(chosenX);
+                    // xTimeScale = xScale(data, year);
+                    // xAxis = renderXAxis(xTimeScale, xAxis)
+                }   
+            
+            })
         }
 
     })
