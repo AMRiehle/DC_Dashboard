@@ -27,10 +27,11 @@ function makeResponsive() {
         .attr("width", svgWidth)
         .attr("height", svgHeight);
 
-    var chartGroup = svg.append("g")
-        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+    // var chartGroup = svg.append("g")
+    //     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-    var chosenY = 'W';
+    
+    var chosenX = 'capitals';
 
     function yScale(alldata, chosenY) {
         var yLinearScale = d3.scaleLinear()
@@ -49,22 +50,60 @@ function makeResponsive() {
         return yAxis;
     }
 
-    function renderBarsY(barsGroup, newYScale, chosenY) {
-        barsGroup.transition()
-        .duration(1000)
-        .attr("y", function(d) { return newYScale(d.value); })
-        .attr("height", function(d) { return height - newYScale(d.value); })
+    function renderBarsY(barsGroup, newYScale) {
+
+        barsGroup
+        .transition()
+        .duration(700)
+        .attr("y", d => { return newYScale(d.value - d.value); })
+        .attr("height", d => { return height - height })
+        .transition()
+        .duration(1500)
+        .attr("y", d => { return newYScale(d.value); })
+        .attr("height", d => { return height - newYScale(d.value); })
+
         return barsGroup;
     }
 
+    function renderBarsY2(barsGroup, newYScale) {
 
+        barsGroup
+        .transition()
+        .duration(1000)
+        .attr("y", d => { return newYScale(d.value + d.value); })
+        .attr("height", d => { return height - height })
+        .transition()
+        .duration(2600)
+        .attr("y", d => { return newYScale(d.value); })
+        .attr("height", d => { return height - newYScale(d.value); })
+
+        return barsGroup;
+    }
 
 
     d3.json('/sports', responce => {
 
         var parseTime = d3.timeParse("%Y")
-        // var parseTime = d3.isoParse
-        var data = responce[1];
+        var data = responce[0];
+
+        function changeTeam(data) {
+            var chartGroup = d3.select('.chartG');
+            chartGroup.remove();
+            
+            renderGraph(data);
+        }
+        
+        changeTeam(data);
+        
+        // var chartGroup = svg.append("g")
+        // .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+        function renderGraph(data) {
+            var chosenY = 'W';
+
+            var chartGroup = svg.append("g")
+            .attr("transform", `translate(${margin.left}, ${margin.top})`)
+            .attr('class', 'chartG')
 
         data.forEach(el => {
             el.Year = parseTime(el.Year);
@@ -106,7 +145,7 @@ function makeResponsive() {
         .attr("stroke", "#EF64AD")
         .call(leftAxis);
 
-        chartGroup.append("g")
+        var y2Axis = chartGroup.append("g")
         .classed("rightAxis", true)
         .attr("transform", `translate(${width}, 0)`)
         .attr("stroke", "#5DDEC9")
@@ -124,7 +163,6 @@ function makeResponsive() {
         .data(function(d) { return att.map(function(key) { return {key: key, value: d[key]}; }); })
         .enter().append("rect")
         .attr("x", 5)
-        // .attr("x", function(d,i) { return xTimeScale(i); })
         .attr("y", function(d) { return yLinearScale2(d.value); })
         .attr("width", width/data.length*0.4)
         .attr("height", function(d) { return height - yLinearScale2(d.value); })
@@ -149,6 +187,7 @@ function makeResponsive() {
         .attr('class', 'resultbars');
 
         var resultBarsGroup = d3.selectAll('.resultbars');
+        var attBarsGroup = d3.selectAll('.bars');
 
         var legvars = ['Attendance', 'W']
 
@@ -218,12 +257,37 @@ function makeResponsive() {
                 chosenY = value;
                 console.log(chosenY);
 
-                yLinearScale = yScale(data, chosenY);
-                yAxis = renderYAxis(yLinearScale, yAxis);
+                yLinearScale1 = yScale(data, chosenY);
+                yAxis = renderYAxis(yLinearScale1, yAxis);
 
-                resultBarsGroup = renderBarsY(resultBarsGroup, yLinearScale, chosenY)
+                resultBarsGroup = renderBarsY(resultBarsGroup, yLinearScale1)
+                attBarsGroup = renderBarsY2(attBarsGroup, yLinearScale2)
+            }
+        });
+
+        xlabelsGroup.selectAll("text")
+            .on("click", function() {
+            // get value of selection
+            var value = d3.select(this).attr("value");
+            if (value != chosenX) {
+                chosenX = value;
+            if (chosenX === 'capitals') {
+                data = responce[0];
+            }
+            else {
+                data = responce[1];
+            }
+            changeTeam(data);
+            console.log(chosenX);
+
+                // yLinearScale1 = yScale(data, chosenY);
+                // yAxis = renderYAxis(yLinearScale1, yAxis);
+
+                // resultBarsGroup = renderBarsY(resultBarsGroup, yLinearScale1)
+                // attBarsGroup = renderBarsY2(attBarsGroup, yLinearScale2)
             }
         })
+        }
 
     })
 
