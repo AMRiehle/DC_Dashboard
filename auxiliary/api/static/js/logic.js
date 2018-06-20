@@ -93,7 +93,7 @@ function makeResponsive() {
         .attr("y", d => { return newYScale(d.value + d.value); })
         .attr("height", d => { return height - height })
         .transition()
-        .duration(2600)
+        .duration(2000)
         .attr("y", d => { return newYScale(d.value); })
         .attr("height", d => { return height - newYScale(d.value); })
 
@@ -167,6 +167,11 @@ function makeResponsive() {
 
         var y2Axis = chartGroup.append("g")
         .classed("rightAxis", true)
+        .transition()
+        .duration(0)
+        .attr("transform", `translate(${width}, ${height*(-0.3)})`)
+        .transition()
+        .duration(1000)
         .attr("transform", `translate(${width}, 0)`)
         .attr("stroke", "#5DDEC9")
         .call(rightAxis);
@@ -179,7 +184,8 @@ function makeResponsive() {
         .attr("transform", function(d) { return "translate(" + xTimeScale(d.Year) + ",0)"; })
         .selectAll("rect")
         .data(function(d) { return att.map(function(key) { return {key: key, value: d[key]}; }); })
-        .enter().append("rect")
+        .enter()
+        .append("rect")
         .attr("x", 5)
         .attr("y", function(d) { return yLinearScale2(d.value); })
         .attr("width", width/data.length*0.4)
@@ -187,7 +193,7 @@ function makeResponsive() {
         .attr("fill", "#5DDEC9")
         .attr('class', 'bars');
 
-        function renderPerf(data, chosenY) {
+        function renderResultbars(data) {
 
             var bars = d3.selectAll('.resultbars');
             bars.remove();
@@ -211,6 +217,12 @@ function makeResponsive() {
             })
             .enter()
             .append("rect")
+            .transition()
+            .duration(600)
+            .attr("y", d => { return yLinearScale1(d.value - d.value); })
+            .attr("height", d => { return height - height })
+            .transition()
+            .duration(1300)
             .attr("y", function(d) { return yLinearScale1(d.value); })
             .attr("width", width/data.length*0.4)
             .attr("height", function(d) { return height - yLinearScale1(d.value); })
@@ -219,58 +231,33 @@ function makeResponsive() {
         
         }
 
-        renderPerf(data, chosenY);
-
-        // chartGroup.append("g")
-        // .selectAll("g")
-        // .data(data)
-        // .enter()
-        // .append("g")
-        // .attr("transform", function(d) { return "translate(" + xTimeScale(d.Year) + ",0)"; })
-        // .selectAll("rect")
-        // .data(function(d) {
-        //     if (chosenY === "W") {
-        //         win = ['W']; 
-        //         return win.map(function(key) { return {key: key, value: d[key]}; });
-        //     }
-        //     else if (chosenY === 'L') {
-        //         win = ['L'];
-        //         return win.map(function(key) { return {key: key, value: d[key]}; });
-        //     }
-        // })
-        // .enter()
-        // .append("rect")
-        // .attr("y", function(d) { return yLinearScale1(d.value); })
-        // .attr("width", width/data.length*0.4)
-        // .attr("height", function(d) { return height - yLinearScale1(d.value); })
-        // .attr("fill", function(d) { return color(d.key); })
-        // .attr('class', 'resultbars');
+        renderResultbars(data);
 
         var resultBarsGroup = d3.selectAll('.resultbars');
         var attBarsGroup = d3.selectAll('.bars');
 
-        var legvars = ['Attendance', 'W']
+        // var legvars = ['Attendance', 'W']
 
-        var legend = chartGroup.append("g")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", 10)
-        .attr("text-anchor", "middle")
-        .selectAll("g")
-        .data(legvars.slice().reverse())
-        .enter().append("g")
-        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+        // var legend = chartGroup.append("g")
+        // .attr("font-family", "sans-serif")
+        // .attr("font-size", 10)
+        // .attr("text-anchor", "middle")
+        // .selectAll("g")
+        // .data(legvars.slice().reverse())
+        // .enter().append("g")
+        // .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
-        legend.append("rect")
-        .attr("x", width * 0.10)
-        .attr("width", 15)
-        .attr("height", 15)
-        .attr("fill", color);
+        // legend.append("rect")
+        // .attr("x", width * 0.10)
+        // .attr("width", 15)
+        // .attr("height", 15)
+        // .attr("fill", color);
 
-        legend.append("text")
-        .attr("x", width*0.05)
-        .attr("y", height*0.02)
-        .attr("dy", "0.32em")
-        .text(function(d) { return d; });
+        // legend.append("text")
+        // .attr("x", width*0.05)
+        // .attr("y", height*0.02)
+        // .attr("dy", "0.32em")
+        // .text(function(d) { return d; });
 
         var xlabelsGroup = chartGroup.append("g")
             .attr("transform", `translate(${width / 2}, ${height + 10})`);
@@ -296,7 +283,7 @@ function makeResponsive() {
             .attr("y", 0 - margin.left+20)
             .attr("x", 0 - (height / 2))
             .attr("dy", "1em")
-            .attr("class", "active")
+            .attr("class", (chosenY === 'W') ? 'active': 'inactive')
             .attr("value", "W")
             .text("Number of wins per season");
         
@@ -305,7 +292,11 @@ function makeResponsive() {
             .attr("y", 0 - margin.left+0)
             .attr("x", 0 - (height / 2))
             .attr("dy", "1em")
-            .attr("class", "inactive")
+            .attr("class", (chosenY === 'L') ? 'active': 'inactive')
+                // if (chosenY === 'L') {
+                //     return 'active'
+                // }
+                // else {return 'inactive'}}))
             .attr("value", "L")
             .text("Number of losses per season");
 
@@ -338,8 +329,8 @@ function makeResponsive() {
 
                 yLinearScale1 = yScale(data, chosenY);
                 yAxis = renderYAxis(yLinearScale1, yAxis);
-                renderPerf(data, chosenY);
-                resultBarsGroup = renderBarsY(resultBarsGroup, yLinearScale1)
+                renderResultbars(data);
+                // resultBarsGroup = renderBarsY(resultBarsGroup, yLinearScale1)
                 attBarsGroup = renderBarsY2(attBarsGroup, yLinearScale2)
             }
         });
@@ -358,11 +349,10 @@ function makeResponsive() {
                         data = responce[1];
                     };
 
-                    year = 'Year';
                     changeTeam(data);
+
                     console.log(chosenX);
-                    // xTimeScale = xScale(data, year);
-                    // xAxis = renderXAxis(xTimeScale, xAxis)
+                    console.log(chosenY)
                 }   
             
             })
