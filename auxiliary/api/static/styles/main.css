@@ -1,13 +1,57 @@
+#graph svg {
+    /* background: rgb(255, 255, 255); */
+    background: rgb(2, 34, 76);
+    
+}
+
 .active {
     font-weight: bold;
-    fill: #1030be;
+    fill: rgb(177, 177, 182);
     transition: fill 0.3s ease-out;
     text-anchor: middle;
 }
   
 .inactive {
     font-weight: lighter;
-    fill: #102391;
+    fill: rgb(123, 123, 128);
     transition: fill 0.3s ease-out;
     text-anchor: middle;
+}
+
+.inactive:hover {
+    fill: rgb(156, 156, 158);
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.bars {
+    fill: rgb(255, 255, 255);
+}
+
+.resultbars {
+    fill: rgb(205, 25, 49);
+}
+
+.dates {
+    stroke: rgb(177, 177, 182);
+    font: 14px times;
+    text-anchor: middle;
+}
+
+.leftAxis {
+    stroke: rgb(205, 25, 49);
+    font: 18px serif;
+}
+
+.rightAxis {
+    stroke:rgb(255, 255, 255);
+    font: 14px times;
+}
+
+.domain {
+    stroke: rgb(177, 177, 182);
+}
+
+line {
+    stroke: rgb(177, 177, 182);
 }

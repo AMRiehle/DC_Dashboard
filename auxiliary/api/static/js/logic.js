@@ -13,9 +13,9 @@ function makeResponsive() {
 
     var margin = {
         top: 50,
-        right: 70,
+        right: 90,
         bottom: 80,
-        left: 70
+        left: 90
         };
     
     var width = svgWidth - margin.left - margin.right;
@@ -82,7 +82,7 @@ function makeResponsive() {
     //     return barsGroup;
     // }
 
-    function renderBarsY2(barsGroup, newYScale) {
+    function renderBarsY2(barsGroup, newYScale) { //add animation on change and when results data renewed
 
         barsGroup
         .transition()
@@ -99,10 +99,9 @@ function makeResponsive() {
 
     d3.json('/sports', responce => {
 
-        
         var data = responce[0];
 
-        function changeTeam(data) {
+        function changeTeam(data) { //change data from one team to another
             var chartGroup = d3.select('.chartG');
             chartGroup.remove();
             
@@ -131,7 +130,6 @@ function makeResponsive() {
             .domain(d3.extent(data, d => d.Year)).nice()
             .range([0, width]);
 
-            // var xTimeScale = xScale(data, year)
             var yLinearScale1 = yScale(data, chosenY);
 
             var yLinearScale2 = d3.scaleLinear()
@@ -150,9 +148,8 @@ function makeResponsive() {
             .attr("transform", `translate(0, ${height})`)
             .call(bottomAxis)
             .selectAll("text")	
-            .style("text-anchor", "end")
-            .attr("stroke", "red")
-            .attr("transform", "rotate(-45)");
+            // .attr("transform", "rotate(-45)")
+            .classed('dates', true);
 
             var yAxis = chartGroup.append("g")
             .classed("leftAxis", true)
@@ -236,7 +233,7 @@ function makeResponsive() {
 
             var yLabel1 = ylabelsGroup.append('text')
                 .attr("transform", "rotate(-90)")
-                .attr("y", 0 - margin.left+20)
+                .attr("y", 0 - margin.left+30)
                 .attr("x", 0 - (height / 2))
                 .attr("dy", "1em")
                 .attr("class", (chosenY === 'W') ? 'active': 'inactive')
@@ -245,7 +242,7 @@ function makeResponsive() {
             
             var yLabel2 = ylabelsGroup.append('text')
                 .attr("transform", "rotate(-90)")
-                .attr("y", 0 - margin.left+0)
+                .attr("y", 0 - margin.left+10)
                 .attr("x", 0 - (height / 2))
                 .attr("dy", "1em")
                 .attr("class", (chosenY === 'L') ? 'active': 'inactive')
