@@ -1,0 +1,13 @@
+.active {
+    font-weight: bold;
+    fill: #1030be;
+    transition: fill 0.3s ease-out;
+    text-anchor: middle;
+}
+  
+.inactive {
+    font-weight: lighter;
+    fill: #102391;
+    transition: fill 0.3s ease-out;
+    text-anchor: middle;
+}
