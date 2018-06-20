@@ -33,11 +33,11 @@ function makeResponsive() {
     d3.json('/sports', responce => {
 
         var parseTime = d3.timeParse("%Y")
+        // var parseTime = d3.isoParse
         var data = responce[0];
 
         data.forEach(el => {
             el.Year = parseTime(el.Year);
-            // el.Year = +el.Year;
             el.W = +el.W;
             el.Attendance = +el.Attendance;
             el.L = +el.L;
@@ -46,18 +46,16 @@ function makeResponsive() {
         console.log(data)
 
         var xTimeScale = d3.scaleTime()
-        .domain(d3.extent(data, d => d.Year))
+        .domain(d3.extent(data, d => d.Year)).nice()
         .range([0, width]);
+
+        // var xTimeScale = d3.scaleBand()
+        // .rangeRound([0, width], .05)
+        // .padding(0.1)
+        // .domain(data.map(function(d) { return d.Year; }));
 
         // var x1 = d3.scaleTime()
         // .rangeRound([0, width], 5);
-
-        // var x1 = d3.scaleTime()
-        // .domain(d3.extent(data, d => d.Year))
-        // .range([0, width]);
-
-        // var x1 = d3.scaleTime()
-        // .range([44]);
 
         var yLinearScale1 = d3.scaleLinear()
         .domain([d3.min(data, d => d.W), d3.max(data, d => d.W)]).nice()
@@ -77,7 +75,12 @@ function makeResponsive() {
 
         chartGroup.append("g")
         .attr("transform", `translate(0, ${height})`)
-        .call(bottomAxis);
+        .call(bottomAxis)
+        .selectAll("text")	
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("transform", "rotate(-45)");
 
         chartGroup.append("g")
         // Define the color of the axis text
@@ -122,22 +125,6 @@ function makeResponsive() {
         .attr("height", function(d) { return height - yLinearScale1(d.value); })
         .attr("fill", function(d) { return color(d.key); });
 
-        // chartGroup.append("g")
-        // .selectAll("g")
-        // .data(data)
-        // .enter().append("g")
-        // .attr("transform", function(d) { return "translate(" + xTimeScale(d.Year) + ",0)"; })
-        // .selectAll("rect")
-        
-        // .data(d => d.W)
-        // .enter().append("rect")
-        // // .attr("x", function(d) { return xTimeScale(d.Year) - (width/data.length)/2; })
-        // .attr("x", d => {return xTimeScale(d.Year)})
-        // .attr("y", d => { return yLinearScale1(d.W); })
-        // .attr("width", width/data.length)
-        // .attr("height", d =>  { return height - yLinearScale1(d.W); })
-        // .attr("fill", d => { return color(d.W); });
-
         var legvars = ['Attendance', 'W']
 
         var legend = chartGroup.append("g")
@@ -161,17 +148,6 @@ function makeResponsive() {
         .attr("dy", "0.32em")
         .text(function(d) { return d; });
 
-        // legend2.append("rect")
-        // .attr("x", width - 15)
-        // .attr("width", 15)
-        // .attr("height", 15)
-        // .attr("fill", color);
-
-        // legend2.append("text")
-        // .attr("x", width*0.93)
-        // .attr("y", height*0.02)
-        // .attr("dy", "0.32em")
-        // .text(function(d) { return d; });
     })
 
 }
