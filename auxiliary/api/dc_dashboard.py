@@ -5,6 +5,11 @@ from flask_pymongo import PyMongo
 dc_dashboard = Flask(__name__)
 mongo = PyMongo(dc_dashboard)
 
+@dc_dashboard.route('/')
+def index():
+
+    return render_template("sports.html")
+
 
 @dc_dashboard.route("/sports")
 def sports():
@@ -19,4 +24,4 @@ def sports():
 
 
 if __name__ == "__main__":
-    dc_dashboard.run(debug=True)
+    dc_dashboard.run()
