@@ -58,15 +58,6 @@ function makeResponsive() {
         return yAxis;
     }
 
-    // function renderXAxis(newXScale, xAxis) {
-    //     var bottomAxis = d3.axisBottom(newXScale);
-    //     xAxis.transition()
-    //     .duration(1000)
-    //     .call(bottomAxis);
-    
-    //     return bottomAxis;
-    // }
-
     // function renderBarsY(barsGroup, newYScale) {
 
     //     barsGroup
@@ -234,7 +225,7 @@ function makeResponsive() {
                 .attr('y', 0)
                 .attr("value", "clean")
                 .classed('cleanBut', true)
-                .text("Clean");
+                .text("All");
 
             hideBarGroup.selectAll("text")
                 .on("click", function() {
