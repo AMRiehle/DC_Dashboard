@@ -28,12 +28,19 @@
     fill: rgb(255, 255, 255);
 }
 
+.bars:hover {
+    fill: rgb(204, 202, 202);
+}
+
 .resultbars {
     fill: rgb(205, 25, 49);
 }
 
+.resultbars:hover {
+    fill: rgb(231, 77, 97);
+}
+
 .dates {
-    stroke: rgb(177, 177, 182);
     font: 14px times;
     text-anchor: middle;
 }
@@ -48,10 +55,14 @@
     font: 14px times;
 }
 
-.domain {
+.domain, line, .dates, .cleanBut {
     stroke: rgb(177, 177, 182);
 }
 
-line {
-    stroke: rgb(177, 177, 182);
+.resBut {
+    stroke: rgb(205, 25, 49);
+}
+
+.attBut {
+    stroke:rgb(255, 255, 255);
 }

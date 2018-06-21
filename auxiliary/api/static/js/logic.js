@@ -168,7 +168,7 @@ function makeResponsive() {
             .call(rightAxis);
 
             //add Attendance bars
-            chartGroup.append("g")
+            var attBars = chartGroup.append("g")
             .selectAll("g")
             .data(data)
             .enter().append("g")
@@ -211,6 +211,53 @@ function makeResponsive() {
         // .attr("y", height*0.02)
         // .attr("dy", "0.32em")
         // .text(function(d) { return d; });
+
+            var hideBarGroup = chartGroup.append("g")
+                .attr("transform", `translate(${width * 0.05}, ${height * 0.02})`);
+
+            var resBar = hideBarGroup.append('text')
+                .attr('x', 0)
+                .attr('y', 0)
+                .attr("value", "res")
+                .classed('resBut', true)
+                .text("Res");
+
+            var attBar = hideBarGroup.append('text')
+                .attr('x', 30)
+                .attr('y', 0)
+                .attr("value", "att")
+                .classed('attBut', true)
+                .text("Att");
+
+            var cleanBar = hideBarGroup.append('text')
+                .attr('x', 60)
+                .attr('y', 0)
+                .attr("value", "clean")
+                .classed('cleanBut', true)
+                .text("Clean");
+
+            hideBarGroup.selectAll("text")
+                .on("click", function() {
+                    var value = d3.select(this).attr("value");
+                    if (value === 'att') {
+                        d3.selectAll('.resultbars')
+                        .style('opacity', '0');
+                        d3.selectAll('.bars')
+                        .style('opacity', '1');
+                    }
+                    else if (value === 'res') {
+                        d3.selectAll('.bars')
+                        .style('opacity', '0');
+                        d3.selectAll('.resultbars')
+                        .style('opacity', '1');
+                    }
+                    else {
+                        d3.selectAll('.bars')
+                        .style('opacity', '1');
+                        d3.selectAll('.resultbars')
+                        .style('opacity', '1');
+                    }
+                })
 
             var xlabelsGroup = chartGroup.append("g")
                 .attr("transform", `translate(${width / 2}, ${height + 10})`);
