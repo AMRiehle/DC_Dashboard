@@ -149,9 +149,9 @@ function makeResponsive() {
 
             var y2Axis = chartGroup.append("g")
             .classed("rightAxis", true)
-            .transition()
-            .duration(0)
-            .attr("transform", `translate(${width}, ${height*(-0.3)})`)
+            // .transition()
+            // .duration(0)
+            .attr("transform", `translate(${width}, ${height*(-0.5)})`)
             .transition()
             .duration(1000)
             .attr("transform", `translate(${width}, 0)`)

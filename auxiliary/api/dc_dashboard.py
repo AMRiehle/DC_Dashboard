@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, redirect
+from flask import Flask, render_template, jsonify, redirect, send_file
 from flask_pymongo import PyMongo
 
 
@@ -8,7 +8,7 @@ mongo = PyMongo(dc_dashboard)
 @dc_dashboard.route('/')
 def index():
 
-    return render_template("sports.html")
+    return render_template("index.html")
 
 
 @dc_dashboard.route("/sports")
@@ -22,6 +22,9 @@ def sports():
 
     return jsonify(all_data)
 
+@dc_dashboard.route('/templates/sports.html')
+def show_sports():
+    return send_file('templates/sports.html')
 
 if __name__ == "__main__":
-    dc_dashboard.run()
+    dc_dashboard.run(debug=True)
