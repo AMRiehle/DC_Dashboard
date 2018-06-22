@@ -22,53 +22,81 @@
 	
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-        <a href="#" class="btn" id="openBtn">Open modal</a>
-        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog">
-                    <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">×</button>
+            <div class="col-md-6 ml-auto">
+                <div id="sports-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog sport modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span>Capitals and Nationals</span>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <iframe src="{{ url_for('show_sports') }}" style="zoom:1" width="760" height='400' frameborder="0"></iframe>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <iframe src="{{ url_for('show_sports') }}" style="zoom:1.2" width="400" height="330" frameborder="0"></iframe>
-            </div>
-            <div class="modal-footer">
-                <button class="btn" data-dismiss="modal">OK</button>
-            </div>
-            </div>
-        </div>
         </div>
 
-        </div>
-    </div>
-    <div class="container">
         <div class="row">
-                <div class="col">
-            <div class="test modal">
-                <p>What happens here</p>
-                <a href="#" rel="modal:close">Close</a>
-            </div>
-            <a href="#" class="btn" id="openBtn">Open modal</a>
+            <div class="col-md-6 ml-auto">
+                <div id="maps-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog map modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span>DC Map</span>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <iframe src="{{ url_for('show_map') }}" style="zoom:1" width="760" height='500' frameborder="0"></iframe>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    <!-- </div>
+    <div class="container"> -->
+        
         <div class="row">
-			<div class="col">
+			<div class="col-md">
 				<div class="iframeContainer">
 					<div id="parent" class="embed-responsive embed-responsive-16by9">
 						<iframe id="sportgraph" class="embed-responsive-item" src="{{ url_for('show_sports') }}" allowfullscreen></iframe>
 					</div>
-				</div>
+                </div>
+                <div>
+                    <a href="#" class="btn" id="sportsBtn">Enlarge</a>
+                </div>
             </div>
+            
+                    
+                
+            
         <!-- </div>
         <div class="row"> -->
-            <div class="col">
+            <div class="col-md">
 				<div class="iframeContainer">
 					<div class="embed-responsive embed-responsive-16by9">
 						<iframe class="embed-responsive-item" src="{{ url_for('show_map') }}" allowfullscreen></iframe>
 					</div>
-				</div>
+                </div>
+                <div>
+                    <a href="#" class="btn" id="mapsBtn">Enlarge</a>
+                </div>
 			</div>
 		</div>
     </div>

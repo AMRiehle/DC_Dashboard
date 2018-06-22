@@ -20,6 +20,10 @@ $(".test").click(function () {
 //     $('#myModal').modal({show:true})
 // });
 
-$('#openBtn').click(function(){
-	$('#myModal').modal({show:true})
+$('#sportsBtn').click(function(){
+	$('#sports-modal').modal({show:true})
+});
+
+$('#mapsBtn').click(function(){
+	$('#maps-modal').modal({show:true})
 });
