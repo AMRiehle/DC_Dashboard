@@ -5,6 +5,9 @@ ancURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/adviso
 smdURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/single-member-district-2013.geojson"
 neighborhoodsURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/neighborhood-clusters.geojson"
 zipcodesURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/zip-codes.geojson"
+gunshot_or_firecracker_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/gunshot-or-firecracker.json"
+single_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/single-gunshots.json"
+multi_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/multi-gunshots.json"
 
 var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" +
     "access_token=pk.eyJ1IjoicmllaGxlYSIsImEiOiJjamlhdWlzcnkxMndiM3FsbWl1aXE0MXJtIn0.g7oyFuzbGAh1O0SXpGI8nw");
@@ -210,6 +213,25 @@ marker5.on('mouseout', function (event) {
         })
       }
   })
+  d3.json(gunshot_or_firecracker_URL, function(response) {
+  var GunshotOrFirecracker = L.markerClusterGroup();
+  for (var i = 0; i < response.length; i++) {
+    GunshotOrFirecracker.addLayer(L.marker([response[i]['Lat (100m)'], response[i]['Lon (100m)']])
+        .bindPopup('<h3>'+response[i].Date+'</h3><h3>'+response[i].Time+'</h3><h3>'+response[i].Type+'</h3>'));
+  }
+  d3.json(single_gunshot_URL, function(response) {
+  var singleGunshots = L.markerClusterGroup();
+  for (var i = 0; i < response.length; i++) {
+    singleGunshots.addLayer(L.marker([response[i]['Lat (100m)'], response[i]['Lon (100m)']])
+        .bindPopup('<h3>'+response[i].Date+'</h3><h3>'+response[i].Time+'</h3><h3>'+response[i].Type+'</h3>'));
+  }
+  d3.json(multi_gunshot_URL, function(response) {
+  var multiGunshots = L.markerClusterGroup();
+  for (var i = 0; i < response.length; i++) {
+    multiGunshots.addLayer(L.marker([response[i]['Lat (100m)'], response[i]['Lon (100m)']])
+        .bindPopup('<h3>'+response[i].Date+'</h3><h3>'+response[i].Time+'</h3><h3>'+response[i].Type+'</h3>'));
+  }
+
   var overlayMaps = {
     "DC Boundary": boundary,
     "DC Quadrants": quad,
@@ -217,12 +239,16 @@ marker5.on('mouseout', function (event) {
     "DC Zipcodes": zipcode, 
     "DC Neighborhoods": neighborhood,
     "DC ANC": anc,
-    "DC Single Member Districts": smd
+    "DC Single Member Districts": smd,
+    "Gunshot or Firecracker Locations": GunshotOrFirecracker,
+    "Single Gunshot Locations": singleGunshots,
+    "Multiple Gunshot Locations": multiGunshots
   }
 
-
-
   L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(myMap);
+})
+})
+})
 })
 })
 })
