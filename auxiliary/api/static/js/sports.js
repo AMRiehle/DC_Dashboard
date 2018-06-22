@@ -8,8 +8,14 @@ function makeResponsive() {
         svgArea.remove();
     }
 
-    var svgWidth = window.innerWidth;
-    var svgHeight = window.innerHeight;
+    var svgWidth = window.innerWidth-15; //exclude scrollbar
+    var svgHeight = window.innerHeight-20; //exclude scrollbar
+
+    var graph = d3.select('#graph')
+        .attr("width", svgWidth)
+        .attr("height", svgHeight);
+    // console.log(svgWidth);
+    // console.log(svgHeight);
 
     var margin = {
         top: 50,
@@ -20,6 +26,9 @@ function makeResponsive() {
     
     var width = svgWidth - margin.left - margin.right;
     var height = svgHeight - margin.top - margin.bottom;
+
+    // var width = svgWidth;
+    // var height = svgHeight;
     
     var svg = d3
         .select("#graph")
