@@ -1,0 +1,17 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: rgb(201, 207, 212);
+    height: 100%;
+}
+
+.popupSize {
+    width: 500px;
+    height: 400px;
+}
+
+.iframeContainer {
+    /* padding: 1px; */
+    border: 1px solid #e3e3e3;
+}
+

@@ -22,9 +22,17 @@ def sports():
 
     return jsonify(all_data)
 
+#function to render sports graph in the index.html
 @dc_dashboard.route('/templates/sports.html')
 def show_sports():
+
     return send_file('templates/sports.html')
+
+#function to render dc_maps in the index.html
+@dc_dashboard.route('/templates/dc_map.html')
+def show_map():
+
+    return send_file('templates/dc_map.html')
 
 if __name__ == "__main__":
     dc_dashboard.run(debug=True)
