@@ -10,7 +10,7 @@ gunshot_or_firecracker_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dash
 single_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/single-gunshots.json"
 multi_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/multi-gunshots.json"
 sportsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/sports-arenas.json"
-nightclubsURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/night-club.geojson"
+nightclubsURL = "http://data.codefordc.org/dataset/34b07f50-42e9-40c1-a7a1-c929f4f14fac/resource/6c17fbfa-8bde-4626-889c-e2a946add426/download/nightclub.geojson"
 
 var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" +
     "access_token=pk.eyJ1IjoicmllaGxlYSIsImEiOiJjamlhdWlzcnkxMndiM3FsbWl1aXE0MXJtIn0.g7oyFuzbGAh1O0SXpGI8nw");
