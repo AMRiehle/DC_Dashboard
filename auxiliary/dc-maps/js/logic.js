@@ -173,7 +173,7 @@ marker3.on('mouseout', function (event) {
       };
     },
   onEachFeature: function (feature, layer) {
-    var marker4 = layer.bindPopup('<h3>'+feature.properties.NBH_NAMES+'</h3>');
+    var marker4 = layer.bindPopup('<h3>'+feature.properties.SHORT_NAME+'</h3><p><b>Neighborhood Cluster:</b> '+feature.properties.NBH_NAMES+'</br><b>Population:</b> '+feature.properties.POPULATION+'</br><b>Percent Children: '+feature.properties.KIDS+'%</p>');
     marker4.on('mouseover', function (event) {
   this.openPopup();
   layer = event.target
