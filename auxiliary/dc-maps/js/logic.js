@@ -173,7 +173,7 @@ marker3.on('mouseout', function (event) {
       };
     },
   onEachFeature: function (feature, layer) {
-    var marker4 = layer.bindPopup('<h3>'+feature.properties.SHORT_NAME+'</h3><p><b>Neighborhood Cluster:</b> '+feature.properties.NBH_NAMES+'</br><b>Population:</b> '+feature.properties.POPULATION+'</br><b>Percent Children: '+feature.properties.KIDS+'%</p>');
+    var marker4 = layer.bindPopup('<h3>'+feature.properties.SHORT_NAME+'</h3><p><b>Neighborhood Cluster:</b> '+feature.properties.NBH_NAMES+'</br><b>Population:</b> '+feature.properties.POPULATION+'</br><b>Percent Children:</b> '+feature.properties.KIDS+'%</br><b>Percent Black:</b> '+feature.properties.BLACK+'%</br><b>Percent White:</b> '+feature.properties.WHITE+'%</br><b>Percent Hispanic:</b> '+feature.properties.HISPANIC+'%</br><b>Percent Asian/Pacific Islander:</b> '+feature.properties.ASIAN+'%</p>');
     marker4.on('mouseover', function (event) {
   this.openPopup();
   layer = event.target
