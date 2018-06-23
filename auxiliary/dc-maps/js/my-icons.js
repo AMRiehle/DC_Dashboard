@@ -25,3 +25,10 @@
     markerColor: "blue",
     prefix: "fa"
   });
+
+    var nightclubsIcon = L.ExtraMarkers.icon({
+    icon: "fa-cocktail",
+    iconColor: "white",
+    markerColor: "black",
+    prefix: "fa"
+  });
