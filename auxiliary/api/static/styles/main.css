@@ -1,4 +1,4 @@
-body, html {
+/* body, html {
     padding: 0;
     margin: 0;
     margin-top: -15px;
@@ -6,24 +6,91 @@ body, html {
     height: 100%;
 }
 
-.picheader {
+.picheader { */
     /* display: flex; */
     /* background: url('../styles/images/header.jpg') center no-repeat; */
+    /* background-size: cover;
+}
+
+.iframeContainer { */
+    /* padding: 1px; */
+    /* border: 1px solid #e3e3e3;
+}
+
+.modal-dialog .sport { */
+    /* width: 750px; */
+    /* margin: auto;
+}
+
+.modal-dialog .map { */
+    /* width: 950px; */
+    /* margin: auto;
+} */
+
+*{  box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+header {
+    grid-area: header;
+    background: url('../styles/images/header4.jpg') center no-repeat;
     background-size: cover;
 }
 
-.iframeContainer {
-    /* padding: 1px; */
-    border: 1px solid #e3e3e3;
+.empty {
+    grid-area: empty-header;
 }
 
-.modal-dialog .sport {
-    /* width: 750px; */
-    margin: auto;
+.weather {
+    grid-area: weather;
 }
 
-.modal-dialog .map {
-    /* width: 950px; */
-    margin: auto;
+.clock {
+    grid-area: clock;
+}
+
+aside {
+    grid-area: aside;
+    background: rgb(132, 216, 121);
+}
+
+article {
+    grid-area: article;
+    background: rgb(236, 122, 198);
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 250px auto;
+    grid-template-areas: 
+        "header header"
+        "aside article";
+}
+
+header {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1.5fr;
+    grid-template-areas:
+        "clock empty-header weather";
+}
+
+@media all and (max-width: 880px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+        grid-template-rows: 280px auto;
+        grid-template-areas: 
+            "header"
+            "aside"
+            "article";
+    }
+
+    header {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "weather"
+        "clock";
+    }
 }
 
