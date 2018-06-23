@@ -11,34 +11,6 @@ single_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/ma
 multi_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/multi-gunshots.json"
 sportsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/sports-arenas.json"
 
-  var multiGunIcon = L.ExtraMarkers.icon({
-    icon: "fa-exclamation-triangle",
-    iconColor: "white",
-    markerColor: "red",
-    prefix: "fa"
-  });
-
-    var singleGunIcon = L.ExtraMarkers.icon({
-    icon: "fa-exclamation-triangle",
-    iconColor: "black",
-    markerColor: "yellow",
-    prefix: "fa"
-  });
-
-    var firecrackerIcon = L.ExtraMarkers.icon({
-    icon: "fa-exclamation-triangle",
-    iconColor: "white",
-    markerColor: "blue",
-    prefix: "fa"
-  });
-
-  var sportsIcon = L.ExtraMarkers.icon({
-    icon: "fa-basketball-ball",
-    iconColor: "white",
-    markerColor: "blue",
-    prefix: "fa"
-  });
-
 var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" +
     "access_token=pk.eyJ1IjoicmllaGxlYSIsImEiOiJjamlhdWlzcnkxMndiM3FsbWl1aXE0MXJtIn0.g7oyFuzbGAh1O0SXpGI8nw");
 
@@ -65,7 +37,7 @@ d3.json(boundaryURL, function(boundaryData) {
   var boundary = L.geoJSON(boundaryData, {
         onEachFeature: function (feature, layer) {
     var marker1 = layer.bindPopup('<h1>Washington, DC</h1><h3>Mayor: Muriel Bowser</h3><h3>Population: 693,972</h3><h3>Area: '+feature.properties.AREAMILES+' Square Miles</h3><h3><a href='+feature.properties.WEB_URL+' target="_blank">Discover DC</a></h3>');
-    marker1.on('mouseover', function (event) {
+    marker1.on('click', function (event) {
   this.openPopup();
 });
   }
