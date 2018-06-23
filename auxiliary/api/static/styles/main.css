@@ -57,12 +57,13 @@ aside {
 
 article {
     grid-area: article;
-    background: rgb(236, 122, 198);
+    padding: 40px;
+    /* background: rgb(236, 122, 198); */
 }
 
 .wrapper {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 0.5fr 3fr;
     grid-template-rows: 250px auto;
     grid-template-areas: 
         "header header"
@@ -74,6 +75,62 @@ header {
     grid-template-columns: 1fr 3fr 1.5fr;
     grid-template-areas:
         "clock empty-header weather";
+}
+
+.intro {
+    grid-area: intro;
+}
+
+.map-info {
+    grid-area: map-info;
+    align-self: center;
+    /* background: rgb(208, 227, 236); */
+}
+
+.map {
+    grid-area: map;
+}
+
+.sports {
+    grid-area: sports;
+}
+
+.sports-info {
+    grid-area: sports-info;
+    align-self: center;
+}
+
+.tweets {
+    grid-area: tweets;
+}
+
+article {
+    display: grid;
+    grid-template-columns: 1.7fr 0.5fr 1.7fr;
+
+    grid-template-areas:
+    "intro intro intro"
+    "map-info map map"
+    "sports sports sports-info"
+    "tweets tweets tweets";
+}
+
+@media all and (max-width: 1160px) {
+    .wrapper{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        grid-template-rows: 280px auto;
+        grid-template-areas: 
+            "header header"
+            "aside article";
+    }
+
+    header {
+        display: grid;
+        grid-template-columns: 1fr 3fr 1.5fr;
+        grid-template-areas:
+            "clock empty-header weather";
+    }
 }
 
 @media all and (max-width: 880px) {
@@ -91,6 +148,18 @@ header {
         grid-template-areas:
         "weather"
         "clock";
+    }
+
+    article {
+        grid-template-columns: 1fr;
+    
+        grid-template-areas:
+        "intro"
+        "map-info"
+        "map"
+        "sports-info"
+        "sports"
+        "tweets";
     }
 }
 
