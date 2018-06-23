@@ -9,9 +9,38 @@ policeDistrictsURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master
 gunshot_or_firecracker_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/gunshot-or-firecracker.json"
 single_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/single-gunshots.json"
 multi_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/multi-gunshots.json"
+sportsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/sports-arenas.json"
+
+  var multiGunIcon = L.ExtraMarkers.icon({
+    icon: "fa-exclamation-triangle",
+    iconColor: "white",
+    markerColor: "red",
+    prefix: "fa"
+  });
+
+    var singleGunIcon = L.ExtraMarkers.icon({
+    icon: "fa-exclamation-triangle",
+    iconColor: "black",
+    markerColor: "yellow",
+    prefix: "fa"
+  });
+
+    var firecrackerIcon = L.ExtraMarkers.icon({
+    icon: "fa-exclamation-triangle",
+    iconColor: "white",
+    markerColor: "blue",
+    prefix: "fa"
+  });
+
+  var sportsIcon = L.ExtraMarkers.icon({
+    icon: "fa-basketball-ball",
+    iconColor: "white",
+    markerColor: "blue",
+    prefix: "fa"
+  });
 
 var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" +
-    "access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NDg1bDA1cjYzM280NHJ5NzlvNDMifQ.d6e-nNyBDtmQCVwVNivz7A");
+    'access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NDg1bDA1cjYzM280NHJ5NzlvNDMifQ.d6e-nNyBDtmQCVwVNivz7A');
 
 var baseMaps = {
   "Street Map": streetmap,
@@ -37,10 +66,7 @@ d3.json(boundaryURL, function(boundaryData) {
         onEachFeature: function (feature, layer) {
     var marker1 = layer.bindPopup('<h1>Washington, DC</h1><h3>Mayor: Muriel Bowser</h3><h3>Population: 693,972</h3><h3>Area: '+feature.properties.AREAMILES+' Square Miles</h3><h3><a href='+feature.properties.WEB_URL+' target="_blank">Discover DC</a></h3>');
     marker1.on('mouseover', function (event) {
-    this.openPopup();
-    marker1.on('mouseout', function (event) {
-    this.closePopup()
-  })
+  this.openPopup();
 });
   }
 })
@@ -250,20 +276,26 @@ marker5.on('mouseout', function (event) {
   d3.json(gunshot_or_firecracker_URL, function(response) {
   var GunshotOrFirecracker = L.markerClusterGroup();
   for (var i = 0; i < response.length; i++) {
-    GunshotOrFirecracker.addLayer(L.marker([response[i]['Lat (100m)'], response[i]['Lon (100m)']])
+    GunshotOrFirecracker.addLayer(L.marker([response[i]['Lat (100m)'], response[i]['Lon (100m)']], {icon: firecrackerIcon})
         .bindPopup('<h3>'+response[i].Date+'</h3><h3>'+response[i].Time+'</h3><h3>'+response[i].Type+'</h3>'));
   }
   d3.json(single_gunshot_URL, function(response) {
   var singleGunshots = L.markerClusterGroup();
   for (var i = 0; i < response.length; i++) {
-    singleGunshots.addLayer(L.marker([response[i]['Lat (100m)'], response[i]['Lon (100m)']])
+    singleGunshots.addLayer(L.marker([response[i]['Lat (100m)'], response[i]['Lon (100m)']], {icon: singleGunIcon})
         .bindPopup('<h3>'+response[i].Date+'</h3><h3>'+response[i].Time+'</h3><h3>'+response[i].Type+'</h3>'));
   }
   d3.json(multi_gunshot_URL, function(response) {
   var multiGunshots = L.markerClusterGroup();
   for (var i = 0; i < response.length; i++) {
-    multiGunshots.addLayer(L.marker([response[i]['Lat (100m)'], response[i]['Lon (100m)']])
+    multiGunshots.addLayer(L.marker([response[i]['Lat (100m)'], response[i]['Lon (100m)']], {icon: multiGunIcon})
         .bindPopup('<h3>'+response[i].Date+'</h3><h3>'+response[i].Time+'</h3><h3>'+response[i].Type+'</h3>'));
+  }
+  d3.json(sportsURL, function(response) {
+  var sportsArenas = L.markerClusterGroup();
+  for (var i = 0; i < response.length; i++) {
+    sportsArenas.addLayer(L.marker([response[i]['LAT'], response[i]['LON']], {icon: sportsIcon})
+        .bindPopup('<h3>'+response[i].STADIUM+'</h3><h4>Seats: '+response[i].CAPACITY+'</h4><h4>Home To: '+response[i].TEAMS+'</h4>'));
   }
 
   var overlayMaps = {
@@ -277,10 +309,12 @@ marker5.on('mouseout', function (event) {
     "DC Single Member Districts": smd,
     "Gunshot or Firecracker Locations": GunshotOrFirecracker,
     "Single Gunshot Locations": singleGunshots,
-    "Multiple Gunshot Locations": multiGunshots
+    "Multiple Gunshot Locations": multiGunshots,
+    "Sports Arenas": sportsArenas
   }
 
   L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(myMap);
+})
 })
 })
 })
