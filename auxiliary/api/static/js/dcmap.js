@@ -6,10 +6,10 @@ smdURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/single
 neighborhoodsURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/neighborhood-clusters.geojson"
 zipcodesURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/zip-codes.geojson"
 policeDistrictsURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/police-districts-mpd.geojson"
-gunshot_or_firecracker_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/gunshot-or-firecracker.json"
-single_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/single-gunshots.json"
-multi_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/multi-gunshots.json"
-sportsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/sports-arenas.json"
+// gunshot_or_firecracker_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/gunshot-or-firecracker.json"
+// single_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/single-gunshots.json"
+// multi_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/multi-gunshots.json"
+// sportsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/sports-arenas.json"
 
   var multiGunIcon = L.ExtraMarkers.icon({
     icon: "fa-exclamation-triangle",
@@ -273,25 +273,25 @@ marker5.on('mouseout', function (event) {
       }
   })
 
-  d3.json(gunshot_or_firecracker_URL, function(response) {
+  d3.json('/gunshots', function(response) {
   var GunshotOrFirecracker = L.markerClusterGroup();
   for (var i = 0; i < response.length; i++) {
     GunshotOrFirecracker.addLayer(L.marker([response[i]['Lat (100m)'], response[i]['Lon (100m)']], {icon: firecrackerIcon})
         .bindPopup('<h3>'+response[i].Date+'</h3><h3>'+response[i].Time+'</h3><h3>'+response[i].Type+'</h3>'));
   }
-  d3.json(single_gunshot_URL, function(response) {
+  d3.json('/singleshots', function(response) {
   var singleGunshots = L.markerClusterGroup();
   for (var i = 0; i < response.length; i++) {
     singleGunshots.addLayer(L.marker([response[i]['Lat (100m)'], response[i]['Lon (100m)']], {icon: singleGunIcon})
         .bindPopup('<h3>'+response[i].Date+'</h3><h3>'+response[i].Time+'</h3><h3>'+response[i].Type+'</h3>'));
   }
-  d3.json(multi_gunshot_URL, function(response) {
+  d3.json('/multishots', function(response) {
   var multiGunshots = L.markerClusterGroup();
   for (var i = 0; i < response.length; i++) {
     multiGunshots.addLayer(L.marker([response[i]['Lat (100m)'], response[i]['Lon (100m)']], {icon: multiGunIcon})
         .bindPopup('<h3>'+response[i].Date+'</h3><h3>'+response[i].Time+'</h3><h3>'+response[i].Type+'</h3>'));
   }
-  d3.json(sportsURL, function(response) {
+  d3.json('/arenas', function(response) {
   var sportsArenas = L.markerClusterGroup();
   for (var i = 0; i < response.length; i++) {
     sportsArenas.addLayer(L.marker([response[i]['LAT'], response[i]['LON']], {icon: sportsIcon})
