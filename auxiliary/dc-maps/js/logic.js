@@ -9,6 +9,7 @@ policeDistrictsURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master
 gunshot_or_firecracker_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/gunshot-or-firecracker.json"
 single_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/single-gunshots.json"
 multi_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/multi-gunshots.json"
+sportsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/sports-arenas.json"
 
   var multiGunIcon = L.ExtraMarkers.icon({
     icon: "fa-exclamation-triangle",
@@ -26,6 +27,13 @@ multi_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/mas
 
     var firecrackerIcon = L.ExtraMarkers.icon({
     icon: "fa-exclamation-triangle",
+    iconColor: "white",
+    markerColor: "blue",
+    prefix: "fa"
+  });
+
+  var sportsIcon = L.ExtraMarkers.icon({
+    icon: "fa-basketball-ball",
     iconColor: "white",
     markerColor: "blue",
     prefix: "fa"
@@ -283,6 +291,12 @@ marker5.on('mouseout', function (event) {
     multiGunshots.addLayer(L.marker([response[i]['Lat (100m)'], response[i]['Lon (100m)']], {icon: multiGunIcon})
         .bindPopup('<h3>'+response[i].Date+'</h3><h3>'+response[i].Time+'</h3><h3>'+response[i].Type+'</h3>'));
   }
+  d3.json(sportsURL, function(response) {
+  var sportsArenas = L.markerClusterGroup();
+  for (var i = 0; i < response.length; i++) {
+    sportsArenas.addLayer(L.marker([response[i]['LAT'], response[i]['LON']], {icon: sportsIcon})
+        .bindPopup('<h3>'+response[i].STADIUM+'</h3><h4>Seats: '+response[i].CAPACITY+'</h4><h4>Home To: '+response[i].TEAMS+'</h4>'));
+  }
 
   var overlayMaps = {
     "DC Boundary": boundary,
@@ -295,10 +309,12 @@ marker5.on('mouseout', function (event) {
     "DC Single Member Districts": smd,
     "Gunshot or Firecracker Locations": GunshotOrFirecracker,
     "Single Gunshot Locations": singleGunshots,
-    "Multiple Gunshot Locations": multiGunshots
+    "Multiple Gunshot Locations": multiGunshots,
+    "Sports Arenas": sportsArenas
   }
 
   L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(myMap);
+})
 })
 })
 })
