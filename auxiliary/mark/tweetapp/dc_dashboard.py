@@ -9,7 +9,7 @@ mongo = PyMongo(dc_dashboard)
 @dc_dashboard.route('/')
 def index():
 
-    return render_template("index.html")
+    return render_template("tweets.html")
 
 
 @dc_dashboard.route("/tweets")
