@@ -3,13 +3,14 @@ quadrantURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/d
 wardURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/ward-2012.geojson"
 ancURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/advisory-neighborhood-commission-2013.geojson"
 smdURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/single-member-district-2013.geojson"
-neighborhoodsURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/neighborhood-clusters.geojson"
+neighborhoodsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/neighborhood-clusters.geojson"
 zipcodesURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/zip-codes.geojson"
 policeDistrictsURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/police-districts-mpd.geojson"
 gunshot_or_firecracker_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/gunshot-or-firecracker.json"
 single_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/single-gunshots.json"
 multi_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/multi-gunshots.json"
 sportsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/sports-arenas.json"
+nightclubsURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/night-club.geojson"
 
 var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" +
     "access_token=pk.eyJ1IjoicmllaGxlYSIsImEiOiJjamlhdWlzcnkxMndiM3FsbWl1aXE0MXJtIn0.g7oyFuzbGAh1O0SXpGI8nw");
@@ -269,7 +270,18 @@ marker5.on('mouseout', function (event) {
     sportsArenas.addLayer(L.marker([response[i]['LAT'], response[i]['LON']], {icon: sportsIcon})
         .bindPopup('<h3>'+response[i].STADIUM+'</h3><h4>Seats: '+response[i].CAPACITY+'</h4><h4>Home To: '+response[i].TEAMS+'</h4>'));
   }
-
+  d3.json(nightclubsURL, function(nightclubsData) {
+  var nightclubs = L.geoJSON(nightclubsData, {
+    pointToLayer: function(feature, latlng) {
+      return L.marker(latlng, {icon: nightclubsIcon})
+    },
+    onEachFeature: function (feature, layer) {
+    layer.bindPopup('<h3>'+feature.properties.Name+'</h3><h4>'+feature.properties.ADDRESS+'</h4>');
+    }
+    })  
+  var nightclubsGroup = L.markerClusterGroup();
+  nightclubsGroup.addLayer(nightclubs)
+ 
   var overlayMaps = {
     "DC Boundary": boundary,
     "DC Quadrants": quad,
@@ -282,10 +294,12 @@ marker5.on('mouseout', function (event) {
     "Gunshot or Firecracker Locations": GunshotOrFirecracker,
     "Single Gunshot Locations": singleGunshots,
     "Multiple Gunshot Locations": multiGunshots,
-    "Sports Arenas": sportsArenas
+    "Sports Arenas": sportsArenas,
+    "DC Nightclubs": nightclubsGroup
   }
 
   L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(myMap);
+})
 })
 })
 })

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify, redirect, send_file
 from flask_pymongo import PyMongo
+from functions import getRidOfId
 
 
 dc_dashboard = Flask(__name__)
@@ -13,12 +14,12 @@ def index():
 
 @dc_dashboard.route("/sports")
 def sports():
-    from functions import getCapsNatsData
+    # from functions import getRidOfId
 
-    capsdata = mongo.db.capitals.find()
-    natsdata = mongo.db.nationals.find()
+    capsdata = getRidOfId(mongo.db.capitals.find())
+    natsdata = getRidOfId(mongo.db.nationals.find())
     
-    all_data = getCapsNatsData(capsdata, natsdata)
+    all_data = [capsdata, natsdata]
 
     return jsonify(all_data)
 
@@ -33,6 +34,38 @@ def show_sports():
 def show_map():
 
     return send_file('templates/dc_map.html')
+
+@dc_dashboard.route('/gunshots')
+def getShots():
+    # from functions import getRidOfId
+
+    allshots = getRidOfId(mongo.db.gunshots.find())
+
+    return jsonify(allshots)
+
+@dc_dashboard.route('/singleshots')
+def getSingle():
+    # from functions import getRidOfId
+
+    single = getRidOfId(mongo.db.singlegunshot.find())
+
+    return jsonify(single)
+
+@dc_dashboard.route('/multishots')
+def getMulti():
+    # from functions import getRidOfId
+
+    multi = getRidOfId(mongo.db.multigunshot.find())
+
+    return jsonify(multi)
+
+@dc_dashboard.route('/arenas')
+def getArenas():
+    # from functions import getRidOfId
+
+    arenas = getRidOfId(mongo.db.arenas.find())
+
+    return jsonify(arenas)
 
 if __name__ == "__main__":
     dc_dashboard.run(debug=True)
