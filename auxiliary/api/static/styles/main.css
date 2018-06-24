@@ -27,27 +27,19 @@
     /* margin: auto;
 } */
 
+
+/* MAIN LAYOUT------------------------------------------------ */
+
 *{  box-sizing: border-box;
     padding: 0;
     margin: 0;
   }
 
+
 header {
     grid-area: header;
     background: url('../styles/images/header4.jpg') center no-repeat;
     background-size: cover;
-}
-
-.empty {
-    grid-area: empty-header;
-}
-
-.weather {
-    grid-area: weather;
-}
-
-.clock {
-    grid-area: clock;
 }
 
 aside {
@@ -72,7 +64,19 @@ article {
         "aside article";
 }
 
+/* HEADER LAYOUT------------------------------------------------ */
 
+.empty {
+    grid-area: empty-header;
+}
+
+.weather {
+    grid-area: weather;
+}
+
+.clock {
+    grid-area: clock;
+}
 
 header {
     display: grid;
@@ -80,6 +84,8 @@ header {
     grid-template-areas:
         "clock empty-header weather";
 }
+
+/* MAIN ARTICLE LAYOUT------------------------------------------------ */
 
 .intro {
     grid-area: intro;
@@ -119,10 +125,12 @@ article {
     "tweets tweets tweets";
 }
 
+/* MEDIA QUERY LAYOUT------------------------------------------------ */
+
 @media all and (max-width: 1160px) {
     .wrapper{
         display: grid;
-        grid-template-columns: 0.5fr 3fr;
+        grid-template-columns: 0.6fr 3fr;
         grid-template-rows: 280px auto;
         grid-template-areas: 
             "header header"
@@ -140,7 +148,7 @@ article {
 @media all and (max-width: 880px) {
     .wrapper {
         grid-template-columns: 1fr;
-        grid-template-rows: 280px auto;
+        grid-template-rows: 280px 10vh auto;
         grid-template-areas: 
             "header"
             "aside"
@@ -154,9 +162,33 @@ article {
         "clock";
     }
 
+    .clock {
+        display: flex;
+        justify-content: center;
+    }
+
+    aside {
+        background: url('../styles/images/stripesh.jpg') center no-repeat;
+        background-size: cover;
+    }
+
+    /* flows only in sidebar boundaries */
+    .menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        position: sticky;
+        height: 10vh;
+        top: 0;
+    }
+
+    .menu li a {
+        /* text-align: center; */
+        align-self: center;
+    }
+
     article {
         grid-template-columns: 1fr;
-    
         grid-template-areas:
         "intro"
         "map-info"
@@ -167,3 +199,45 @@ article {
     }
 }
 
+/* HEADER------------------------------------------------ */
+
+/* SIDEBAR------------------------------------------------ */
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.menu li {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px 10px 0px ;
+    /* margin: 0 15px; */
+    /* max-width: 320px; */
+}
+
+.menu li a {
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+    /* text-shadow: 0.5px 1px 1px rgb(15, 4, 165); */
+    color: rgb(6, 8, 134);
+    background: rgba(248, 4, 4, 0.384);
+    border-radius: 5px;
+    padding: 0 5px;
+    margin: 0 15px;
+    text-align: center;
+    flex-grow: 1;
+
+}
+
+.menu li a:hover {
+    
+    /* font-size: 23px; */
+    /* text-decoration: none; */
+    color: rgb(38, 41, 221);
+    background: rgba(240, 58, 58, 0.705);
+}
+
+/* MAIN------------------------------------------------ */

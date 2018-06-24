@@ -35,7 +35,15 @@
                 </div>
             </header>
             <aside>
-                <div>lalala</div>
+                <div class="sidebar">
+                    <ul class="menu">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#map">DC Map</a></li>
+                        <li><a href="#sport">City Teams</a></li>
+                        <li><a href="#bars">Night Bars</a></li>
+                        <li><a href="#">Something else</a></li>
+                    </ul>
+                </div>
             </aside>
             <article>
                 <div class="intro">
@@ -46,7 +54,7 @@
                     <p>Like you, I used to think the world was this great place where everybody lived by the same standards.</p>
                     <p>The lysine contingency - it's intended to prevent the spread of the animals is case they ever got off the island. Dr. Wu.</p>
                 </div>
-                <div class="map">
+                <div id="map" class="map">
                     <div class="iframeContainer">
                         <div class="embed-responsive embed-responsive-16by9">
                             <iframe class="embed-responsive-item" src="{{ url_for('show_map') }}" allowfullscreen></iframe>
@@ -56,7 +64,7 @@
                         <a href="#" class="btn" id="mapsBtn">Enlarge</a>
                     </div>    
                 </div>
-                <div class="sports">
+                <div id="sport" class="sports">
                     <div class="iframeContainer">
                         <div id="parent" class="embed-responsive embed-responsive-16by9">
                             <iframe id="sportgraph" class="embed-responsive-item" src="{{ url_for('show_sports') }}" allowfullscreen></iframe>
@@ -70,7 +78,7 @@
                         
                     <p>The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. good will, shepherds the weak through the valley of darkness, for he is truly his brother's keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who would attempt to poison and destroy My brothers. And you will know My name is the Lord when I lay My vengeance upon thee. </p>
                 </div>
-                <div class="tweets"><h3>I'm serious as a heart attack</h3>
+                <div id="bars" class="tweets"><h3>I'm serious as a heart attack</h3>
                     <p>You see? It's curious. Ted did figure it out - time travel. And when we get back, we gonna tell everyone. How it's possible, how it's done, what the dangers are. But then why fifty years in the future when the spacecraft encounters a black hole does the computer call it an 'unknown entry event'? Why don't they know? If they don't know, that means we never told anyone. And if we never told anyone it means we never made it back. Hence we die down here. Just as a matter of deductive logic. </p>
                     
                     <h3>So, you cold?</h3>
