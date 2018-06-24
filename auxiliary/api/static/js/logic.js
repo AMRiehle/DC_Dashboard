@@ -4,7 +4,7 @@ $( document ).ready(function() {
     console.log( "ready!" );
 });
 
-// $(".test").click(function () {
+// $("#sportsBtn").click(function () {
 //     $('#parent').toggleClass("embed-responsive-1by1");
 //     console.log('cllicked');
 // })
