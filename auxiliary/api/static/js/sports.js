@@ -1,3 +1,7 @@
+$( document ).ready(function() {
+    console.log( "ready!" );
+});
+
 d3.select(window).on("resize", makeResponsive);
 makeResponsive();
 
@@ -26,9 +30,6 @@ function makeResponsive() {
     
     var width = svgWidth - margin.left - margin.right;
     var height = svgHeight - margin.top - margin.bottom;
-
-    // var width = svgWidth;
-    // var height = svgHeight;
     
     var svg = d3
         .select("#graph")
@@ -41,6 +42,7 @@ function makeResponsive() {
     var year = 'Year';
     var att = ['Attendance']
     var win = ['W']
+    var counter = 0;
 
     function yScale(alldata, chosenY) {
         var yLinearScale = d3.scaleLinear()
@@ -67,21 +69,6 @@ function makeResponsive() {
         return yAxis;
     }
 
-    // function renderBarsY(barsGroup, newYScale) {
-
-    //     barsGroup
-    //     .transition()
-    //     .duration(700)
-    //     .attr("y", d => { return newYScale(d.value - d.value); })
-    //     .attr("height", d => { return height - height })
-    //     .transition()
-    //     .duration(1500)
-    //     .attr("y", d => { return newYScale(d.value); })
-    //     .attr("height", d => { return height - newYScale(d.value); })
-
-    //     return barsGroup;
-    // }
-
     function renderBarsY2(barsGroup, newYScale) { //add animation on change and when results data renewed
 
         barsGroup
@@ -102,10 +89,13 @@ function makeResponsive() {
         var data = responce[0];
 
         function changeTeam(data) { //change data from one team to another
+
             var chartGroup = d3.select('.chartG');
             chartGroup.remove();
+
+            //terrible workaround
+            (counter === 2)? window.location.reload() && renderGraph(data): renderGraph(data)
             
-            renderGraph(data);
         }
         
         changeTeam(data);
@@ -272,7 +262,7 @@ function makeResponsive() {
             var xLabel2 = xlabelsGroup.append("text")
                 .attr("x", 0)
                 .attr("y", 55)
-                .classed("inactive", true)
+                .classed("active", true)
                 .attr("value", "nationals")
                 .text("Washington Nationals");
 
@@ -330,17 +320,38 @@ function makeResponsive() {
 
             xlabelsGroup.selectAll("text")
                 .on("click", function() {
-                
+
+                    counter += 1;
+                    console.log(counter);
+
                     var value = d3.select(this).attr("value");
                     if (value != chosenX) {
                         chosenX = value;
 
                         (chosenX === 'capitals') ? data = responce[0]: data = responce[1];
-
                         changeTeam(data);
+
+                        // if (chosenX === "nationals") {
+                        //     xLabel2
+                        //     .classed("active", true)
+                        //     .classed("inactive", false);
+                        //     xLabel1
+                        //     .classed("active", false)
+                        //     .classed("inactive", true);
+                        // }
+                        // else {
+                        //     xLabel1
+                        //     .classed("active", true)
+                        //     .classed("inactive", false);
+                        //     xLabel2
+                        //     .classed("active", false)
+                        //     .classed("inactive", true);
+                        // }
 
                         console.log(chosenX);
                         console.log(chosenY)
+
+                        
                     }   
                 
                 })
