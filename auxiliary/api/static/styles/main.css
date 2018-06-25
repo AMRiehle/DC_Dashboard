@@ -233,7 +233,7 @@ article {
     /* max-width: 320px; */
 }
 
-.menu li a {
+.menu li a, #mapsBtn, #sportsBtn {
     font-weight: bold;
     font-size: 20px;
     text-decoration: none;
@@ -248,11 +248,22 @@ article {
 
 }
 
-.menu li a:hover {
+.menu li a:hover, #mapsBtn:hover, #sportsBtn:hover {
     background: rgba(240, 58, 58, 0.705);
+    /* cursor: pointer; */
 }
 
 /* MAIN------------------------------------------------ */
+
+#mapsBtn {
+    margin-top: 12px;
+}
+
+/* .sports, .map {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */
 
 .iframe-parent {
     overflow: auto!important;
