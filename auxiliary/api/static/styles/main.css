@@ -93,8 +93,7 @@ header {
 
 .map-info {
     grid-area: map-info;
-    align-self: center;
-    /* background: rgb(208, 227, 236); */
+    align-self: flex-start;
 }
 
 .map {
@@ -107,7 +106,7 @@ header {
 
 .sports-info {
     grid-area: sports-info;
-    align-self: center;
+    align-self: flex-start;
 }
 
 .tweets {
