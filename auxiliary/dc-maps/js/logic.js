@@ -10,7 +10,8 @@ gunshot_or_firecracker_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dash
 single_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/single-gunshots.json"
 multi_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/multi-gunshots.json"
 sportsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/sports-arenas.json"
-nightclubsURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/night-club.geojson"
+nightclubsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/nightclubs.geojson"
+restaurantsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/restaurants.geojson"
 
 var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" +
     "access_token=pk.eyJ1IjoicmllaGxlYSIsImEiOiJjamlhdWlzcnkxMndiM3FsbWl1aXE0MXJtIn0.g7oyFuzbGAh1O0SXpGI8nw");
@@ -276,11 +277,23 @@ marker5.on('mouseout', function (event) {
       return L.marker(latlng, {icon: nightclubsIcon})
     },
     onEachFeature: function (feature, layer) {
-    layer.bindPopup('<h3>'+feature.properties.Name+'</h3><h4>'+feature.properties.ADDRESS+'</h4>');
+    layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4>');
     }
     })  
   var nightclubsGroup = L.markerClusterGroup();
   nightclubsGroup.addLayer(nightclubs)
+
+    d3.json(restaurantsURL, function(restaurantsData) {
+  var restaurants = L.geoJSON(restaurantsData, {
+    pointToLayer: function(feature, latlng) {
+      return L.marker(latlng, {icon: restaurantsIcon})
+    },
+    onEachFeature: function (feature, layer) {
+    layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4>');
+    }
+    })  
+  var restaurantsGroup = L.markerClusterGroup();
+  restaurantsGroup.addLayer(restaurants)
  
   var overlayMaps = {
     "DC Boundary": boundary,
@@ -295,10 +308,12 @@ marker5.on('mouseout', function (event) {
     "Single Gunshot Locations": singleGunshots,
     "Multiple Gunshot Locations": multiGunshots,
     "Sports Arenas": sportsArenas,
-    "DC Nightclubs": nightclubsGroup
+    "DC Nightclubs": nightclubsGroup,
+    "DC Restaurants": restaurantsGroup
   }
 
   L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(myMap);
+})
 })
 })
 })
