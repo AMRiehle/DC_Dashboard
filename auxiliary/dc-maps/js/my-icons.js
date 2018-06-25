@@ -39,3 +39,17 @@
     markerColor: "black",
     prefix: "fa"
   });
+
+  var manufacturerIcon = L.ExtraMarkers.icon({
+    icon: "fa-industry",
+    iconColor: "white",
+    markerColor: "black",
+    prefix: "fa"
+  });  
+
+  var wholesaleIcon = L.ExtraMarkers.icon({
+    icon: "fa-warehouse",
+    iconColor: "white",
+    markerColor: "black",
+    prefix: "fa"
+  });    
