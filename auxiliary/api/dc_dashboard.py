@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, redirect, send_file
+from flask import Flask, render_template, jsonify, redirect, send_file, request
 from flask_pymongo import PyMongo
 from functions import getRidOfId
 
@@ -68,6 +68,20 @@ def getArenas():
     arenas = getRidOfId(mongo.db.arenas.find())
 
     return jsonify(arenas)
+
+@dc_dashboard.route('/form', methods=["GET", "POST"])
+def form():
+    if request.method == "POST":
+        name = request.form["name"]
+        rating = request.form["rating"]
+        comment = request.form["comment"]
+        print(name)
+        print(rating)
+        print(comment)
+        return redirect("/", code=302)
+
+    return render_template('index.html')
+
 
 
 if __name__ == "__main__":
