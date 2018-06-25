@@ -33,6 +33,9 @@
 *{  box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: 'Catamaran', sans-serif;
+    font-size: 15pt;
+    color: rgb(54, 53, 61);
   }
 
 
@@ -171,7 +174,7 @@ article {
         background-size: cover;
     }
 
-    /* flows only in sidebar boundaries */
+    /* flows only within sidebar boundaries */
     .menu {
         display: flex;
         flex-direction: row;
@@ -198,6 +201,20 @@ article {
     }
 }
 
+@media all and (max-width: 550px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+        grid-template-rows: 280px auto;
+        grid-template-areas: 
+            "header"
+            "article";
+    }
+    aside {
+        display: none;
+    }
+}
+
+
 /* HEADER------------------------------------------------ */
 
 /* SIDEBAR------------------------------------------------ */
@@ -221,8 +238,8 @@ article {
     font-size: 20px;
     text-decoration: none;
     /* text-shadow: 0.5px 1px 1px rgb(15, 4, 165); */
-    color: rgb(6, 8, 134);
-    background: rgba(248, 4, 4, 0.384);
+    color: rgb(251, 250, 252);
+    background: rgba(18, 113, 245, 0.76);
     border-radius: 5px;
     padding: 0 5px;
     margin: 0 15px;
@@ -232,11 +249,17 @@ article {
 }
 
 .menu li a:hover {
-    
-    /* font-size: 23px; */
-    /* text-decoration: none; */
-    color: rgb(38, 41, 221);
     background: rgba(240, 58, 58, 0.705);
 }
 
 /* MAIN------------------------------------------------ */
+
+.iframe-parent {
+    overflow: auto!important;
+    -webkit-overflow-scrolling: touch!important;
+}
+
+.iframe-child {
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
