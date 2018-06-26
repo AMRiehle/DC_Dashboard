@@ -1,7 +1,6 @@
 from flask import Flask, render_template, jsonify, redirect, send_file, request
 from flask_pymongo import PyMongo
 from functions import getRidOfId
-import pandas as pd
 
 
 dc_dashboard = Flask(__name__)
@@ -94,6 +93,7 @@ def form():
 
 @dc_dashboard.route('/rating')
 def rating():
+    import pandas as pd
 
     all_ratings = getRidOfId(mongo.db.feedbacks.find())
 
@@ -102,12 +102,15 @@ def rating():
     df['DateOnly'] = df['Date'].dt.date
     df['Rating'] = pd.to_numeric(df['Rating'])
     rate = df.groupby('DateOnly').mean().reset_index()
+    rate['Rating'] = round(rate['Rating'],2)
 
-    
-    print(df)
+    return jsonify(rate.to_dict(orient='records'))
 
-    return jsonify(rate.to_json(orient='records'))
 
+@dc_dashboard.route('/test')
+def test():
+
+    return render_template("rating.html")
 
 
 if __name__ == "__main__":
