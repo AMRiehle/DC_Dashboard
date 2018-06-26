@@ -53,3 +53,17 @@
     markerColor: "black",
     prefix: "fa"
   });    
+
+    var liquorStoreIcon = L.ExtraMarkers.icon({
+    icon: "fa-store-alt",
+    iconColor: "white",
+    markerColor: "black",
+    prefix: "fa"
+  });
+
+  var groceryStoreIcon = L.ExtraMarkers.icon({
+    icon: "fa-store",
+    iconColor: "white",
+    markerColor: "black",
+    prefix: "fa"
+  });

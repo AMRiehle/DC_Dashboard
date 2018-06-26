@@ -130,6 +130,30 @@ marker4.on('mouseout', function (event) {
   var wholesaleGroup = L.markerClusterGroup();
   wholesaleGroup.addLayer(wholesalers)
 
+    d3.json(liquorStoreURL, function(liquorStoreData) {
+  var liquorStores = L.geoJSON(liquorStoreData, {
+    pointToLayer: function(feature, latlng) {
+      return L.marker(latlng, {icon: liquorStoreIcon})
+    },
+    onEachFeature: function (feature, layer) {
+    layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4>');
+    }
+    })  
+  var liquorStoreGroup = L.markerClusterGroup();
+  liquorStoreGroup.addLayer(liquorStores)
+
+    d3.json(groceryURL, function(groceryStoreData) {
+  var groceryStores = L.geoJSON(groceryStoreData, {
+    pointToLayer: function(feature, latlng) {
+      return L.marker(latlng, {icon: groceryStoreIcon})
+    },
+    onEachFeature: function (feature, layer) {
+    layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4><h4>License Type: '+feature.properties.TYPE+'</h4>');
+    }
+    })  
+  var groceryStoreGroup = L.markerClusterGroup();
+  groceryStoreGroup.addLayer(groceryStores)
+
     d3.json(RestaurantURL, function(restaurantsData) {
   var restaurants = L.geoJSON(restaurantsData, {
     pointToLayer: function(feature, latlng) {
@@ -148,10 +172,14 @@ marker4.on('mouseout', function (event) {
     "DC Neighborhoods": neighborhood,
     "DC Alcohol Manufacturers": manufacturersGroup,
     "DC Alcohol Wholesale": wholesaleGroup,
+    "DC Liquor Stores": liquorStoreGroup,
+    "DC Grocery Stores": groceryStoreGroup,
     "DC Restaurants": restaurantsGroup
   }
 
   L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(myMap);
+})
+})
 })
 })
 })
