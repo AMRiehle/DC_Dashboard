@@ -67,3 +67,31 @@
     markerColor: "black",
     prefix: "fa"
   });
+
+    var MarineVesselIcon = L.ExtraMarkers.icon({
+    icon: "fa-ship",
+    iconColor: "white",
+    markerColor: "black",
+    prefix: "fa"
+  });
+
+  var HotelIcon = L.ExtraMarkers.icon({
+    icon: "fa-hotel",
+    iconColor: "white",
+    markerColor: "black",
+    prefix: "fa"
+  });
+
+  var artsIcon = L.ExtraMarkers.icon({
+    icon: "fa-grin-hearts",
+    iconColor: "white",
+    markerColor: "black",
+    prefix: "fa"
+  });
+
+  var beerIcon = L.ExtraMarkers.icon({
+    icon: "fa-beer",
+    iconColor: "white",
+    markerColor: "black",
+    prefix: "fa"
+  });
