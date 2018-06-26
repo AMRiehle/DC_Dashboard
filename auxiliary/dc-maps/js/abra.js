@@ -4,8 +4,7 @@ neighborhoodsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/mast
 manufacturerURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/abra-manufacturer.geojson"
 wholesaleURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/abra-wholesaler.geojson"
 liquorStoreURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/retail-liquor-store.geojson"
-groceryURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/retail-grocery.geojson"
-RetailClassBURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/retail-class-b.geojson"
+groceryURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/retail-grocery-and-class-b.geojson"
 MarineVesselURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/marine-vessel.geojson"
 HotelsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/hotels.geojson"
 MultipurposeURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/abra-multipurpose.geojson"
@@ -112,8 +111,8 @@ marker4.on('mouseout', function (event) {
       return L.marker(latlng, {icon: manufacturerIcon})
     },
     onEachFeature: function (feature, layer) {
-    layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4>');
-    }
+   layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4><h4>License Type: '+feature.properties.TYPE+'</h4>');
+     }
     })  
   var manufacturersGroup = L.markerClusterGroup();
   manufacturersGroup.addLayer(manufacturers)
@@ -124,8 +123,8 @@ marker4.on('mouseout', function (event) {
       return L.marker(latlng, {icon: wholesaleIcon})
     },
     onEachFeature: function (feature, layer) {
-    layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4>');
-    }
+   layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4><h4>License Type: '+feature.properties.TYPE+'</h4>');
+     }
     })  
   var wholesaleGroup = L.markerClusterGroup();
   wholesaleGroup.addLayer(wholesalers)
@@ -136,8 +135,8 @@ marker4.on('mouseout', function (event) {
       return L.marker(latlng, {icon: liquorStoreIcon})
     },
     onEachFeature: function (feature, layer) {
-    layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4>');
-    }
+   layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4><h4>License Type: '+feature.properties.TYPE+'</h4>');
+     }
     })  
   var liquorStoreGroup = L.markerClusterGroup();
   liquorStoreGroup.addLayer(liquorStores)
@@ -148,24 +147,108 @@ marker4.on('mouseout', function (event) {
       return L.marker(latlng, {icon: groceryStoreIcon})
     },
     onEachFeature: function (feature, layer) {
-    layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4><h4>License Type: '+feature.properties.TYPE+'</h4>');
-    }
+   layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4><h4>License Type: '+feature.properties.TYPE+'</h4>');
+     }
     })  
   var groceryStoreGroup = L.markerClusterGroup();
   groceryStoreGroup.addLayer(groceryStores)
 
-    d3.json(RestaurantURL, function(restaurantsData) {
-  var restaurants = L.geoJSON(restaurantsData, {
+      d3.json(MarineVesselURL, function(MarineVesselData) {
+  var MarineVessels = L.geoJSON(MarineVesselData, {
+    pointToLayer: function(feature, latlng) {
+      return L.marker(latlng, {icon: MarineVesselIcon})
+    },
+    onEachFeature: function (feature, layer) {
+   layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4><h4>License Type: '+feature.properties.TYPE+'</h4>');
+     }
+    })  
+  var MarineVesselGroup = L.markerClusterGroup();
+  MarineVesselGroup.addLayer(MarineVessels)
+
+  d3.json(HotelsURL, function(HotelData) {
+  var hotels = L.geoJSON(HotelData, {
+    pointToLayer: function(feature, latlng) {
+      return L.marker(latlng, {icon: HotelIcon})
+    },
+    onEachFeature: function (feature, layer) {
+   layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4><h4>License Type: '+feature.properties.TYPE+'</h4>');
+     }
+    })  
+  var HotelsGroup = L.markerClusterGroup();
+  HotelsGroup.addLayer(hotels)
+
+  d3.json(HotelsURL, function(HotelData) {
+  var hotels = L.geoJSON(HotelData, {
+    pointToLayer: function(feature, latlng) {
+      return L.marker(latlng, {icon: HotelIcon})
+    },
+    onEachFeature: function (feature, layer) {
+   layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4><h4>License Type: '+feature.properties.TYPE+'</h4>');
+     }
+    })  
+  var HotelsGroup = L.markerClusterGroup();
+  HotelsGroup.addLayer(hotels)
+
+    d3.json(MultipurposeURL, function(MultipurposeData) {
+  var multipurpose = L.geoJSON(MultipurposeData, {
+    pointToLayer: function(feature, latlng) {
+      return L.marker(latlng, {icon: artsIcon})
+    },
+    onEachFeature: function (feature, layer) {
+   layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4><h4>License Type: '+feature.properties.TYPE+'</h4>');
+     }
+    })  
+  var MultipurposeGroup = L.markerClusterGroup();
+  MultipurposeGroup.addLayer(multipurpose)
+
+      d3.json(NightclubURL, function(NightclubData) {
+  var nightclubs = L.geoJSON(NightclubData, {
+    pointToLayer: function(feature, latlng) {
+      return L.marker(latlng, {icon: nightclubsIcon})
+    },
+    onEachFeature: function (feature, layer) {
+   layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4><h4>License Type: '+feature.properties.TYPE+'</h4>');
+     }
+    })  
+  var NightclubGroup = L.markerClusterGroup();
+  NightclubGroup.addLayer(nightclubs)
+
+      d3.json(PrivateClubURL, function(PrivateClubData) {
+  var PrivateClubs = L.geoJSON(PrivateClubData, {
+    pointToLayer: function(feature, latlng) {
+      return L.marker(latlng, {icon: nightclubsIcon})
+    },
+    onEachFeature: function (feature, layer) {
+   layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4><h4>License Type: '+feature.properties.TYPE+'</h4>');
+     }
+    })  
+  var PrivateClubGroup = L.markerClusterGroup();
+  PrivateClubGroup.addLayer(PrivateClubs)
+ 
+      d3.json(TavernURL, function(TavernData) {
+  var taverns = L.geoJSON(TavernData, {
+    pointToLayer: function(feature, latlng) {
+      return L.marker(latlng, {icon: beerIcon})
+    },
+    onEachFeature: function (feature, layer) {
+   layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4><h4>License Type: '+feature.properties.TYPE+'</h4>');
+     }
+    })  
+  var TavernGroup = L.markerClusterGroup();
+  TavernGroup.addLayer(taverns)
+
+        d3.json(RestaurantURL, function(RestaurantData) {
+  var restaurants = L.geoJSON(RestaurantData, {
     pointToLayer: function(feature, latlng) {
       return L.marker(latlng, {icon: restaurantsIcon})
     },
     onEachFeature: function (feature, layer) {
-    layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4>');
-    }
+   layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4><h4>License Type: '+feature.properties.TYPE+'</h4>');
+     }
     })  
-  var restaurantsGroup = L.markerClusterGroup();
-  restaurantsGroup.addLayer(restaurants)
- 
+  var RestaurantGroup = L.markerClusterGroup();
+  RestaurantGroup.addLayer(restaurants)
+
   var overlayMaps = {
     "DC Boundary": boundary,
     "DC Quadrants": quad,
@@ -173,11 +256,24 @@ marker4.on('mouseout', function (event) {
     "DC Alcohol Manufacturers": manufacturersGroup,
     "DC Alcohol Wholesale": wholesaleGroup,
     "DC Liquor Stores": liquorStoreGroup,
-    "DC Grocery Stores": groceryStoreGroup,
-    "DC Restaurants": restaurantsGroup
+    "DC Grocery Stores and Markets": groceryStoreGroup,
+    "DC Marine Vessels": MarineVesselGroup,
+    "DC Hotels": HotelsGroup,
+    "DC Multipurpose License Holders": MultipurposeGroup,
+    "DC Nightclubs": NightclubGroup,
+    "DC Private Clubs": PrivateClubGroup,
+    "DC Taverns": TavernGroup,
+    "DC Restaurants": RestaurantGroup
   }
 
   L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(myMap);
+})
+})
+})
+})
+})
+})
+})
 })
 })
 })
