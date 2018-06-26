@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, redirect, send_file, request
 from flask_pymongo import PyMongo
 from functions import getRidOfId
+import pandas as pd
 
 
 dc_dashboard = Flask(__name__)
@@ -69,24 +70,43 @@ def getArenas():
 
     return jsonify(arenas)
 
-@dc_dashboard.route('/form', methods=["GET", "POST"])
+
+@dc_dashboard.route('/form', methods=["POST"])
 def form():
     import datetime
 
-    if request.method == "POST":
+    #if request.method == "POST":
 
-        name = request.form["name"]
-        rating = request.form["rating"]
-        comment = request.form["comment"]
-        date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    name = request.form["name"]
+    rating = request.form["rating"]
+    comment = request.form["comment"]
+    date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # date = ('2018-06-22')
 
-        review = {'Name': name, 'Rating': rating, 'Comment': comment, 'Date': date}
-        print(review)
-        mongo.db.feedbacks.insert_one(review)
+    review = {'Name': name, 'Rating': rating, 'Comment': comment, 'Date': date}
+    print(review)
+    mongo.db.feedbacks.insert_one(review)
         
-        return redirect("/", code=302)
+    return redirect("/", code=302)
 
-    return render_template('index.html')
+    # return render_template('index.html')
+
+
+@dc_dashboard.route('/rating')
+def rating():
+
+    all_ratings = getRidOfId(mongo.db.feedbacks.find())
+
+    df = pd.DataFrame.from_dict(all_ratings, orient='columns')
+    df['Date'] = pd.to_datetime(df['Date'])
+    df['DateOnly'] = df['Date'].dt.date
+    df['Rating'] = pd.to_numeric(df['Rating'])
+    rate = df.groupby('DateOnly').mean().reset_index()
+
+    
+    print(df)
+
+    return jsonify(rate.to_json(orient='records'))
 
 
 
