@@ -42,7 +42,7 @@
                         <li><a href="#sport">City Teams</a></li>
                         <li><a href="#bars">Night Bars</a></li>
                         <li><a href="#">Something else</a></li>
-                        <li><a href="#contact_dialog" class="btn" id="contBtn" data-toggle="modal" data-target="#contact_dialog">Contact Us</a></li>
+                        <li><a href="#contact_dialog" class="btn" id="contBtn" data-toggle="modal" data-target="#contact_dialog">Rate Us</a></li>
                         <!-- <li><button class="cont-button" data-toggle="modal" data-target="#contact_dialog">Contact Us</button></li> -->
                     </ul>
                 </div>
@@ -154,16 +154,16 @@
                         <div class="modal-body">
                             
                             <form id="contact_form" action="/form" method="POST" role="form">
-                                <input type="text" class="form-control" name="name" placeholder="Enter Your Name">
-                                <select class="custom-select mr-sm-2" name="rating">
+                                <input type="text" class="form-control form-line" name="name" placeholder="Enter Your Name">
+                                <select class="custom-select mr-sm-2 form-line" name="rating">
                                     <option selected>Choose Rating..</option>
                                     <option value="1">Terrible</option>
                                     <option value="2">So-so</option>
-                                    <option value="3">Neuttral</option>
+                                    <option value="3">I don't know..</option>
                                     <option value="4">Good</option>
-                                    <option value="5">Terrific</option>
+                                    <option value="5">Awesome</option>
                                 </select>
-                                <input type="text" class="form-control" placeholder="Enter review text" name="comment">
+                                <input type="text" class="form-control form-line" placeholder="Enter review text" name="comment">
                             </form>
                             
                         </div>

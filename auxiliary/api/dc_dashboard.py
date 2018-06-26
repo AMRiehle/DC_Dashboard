@@ -71,13 +71,19 @@ def getArenas():
 
 @dc_dashboard.route('/form', methods=["GET", "POST"])
 def form():
+    import datetime
+
     if request.method == "POST":
+
         name = request.form["name"]
         rating = request.form["rating"]
         comment = request.form["comment"]
-        print(name)
-        print(rating)
-        print(comment)
+        date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        review = {'Name': name, 'Rating': rating, 'Comment': comment, 'Date': date}
+        print(review)
+        mongo.db.feedbacks.insert_one(review)
+        
         return redirect("/", code=302)
 
     return render_template('index.html')

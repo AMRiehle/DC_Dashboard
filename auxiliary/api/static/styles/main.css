@@ -259,11 +259,9 @@ article {
     margin-top: 12px;
 }
 
-/* .sports, .map {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-} */
+.form-line {
+    margin-top: 15px;
+}
 
 .iframe-parent {
     overflow: auto!important;
