@@ -19,23 +19,23 @@ function makeResponsive() {
     .style({
         width: window.innerWidth-15,
         'margin-left': 5 + '%',
-        height: window.innerHeight-20,
+        height: window.innerHeight-60,
         'margin-top': 5 + 'vh'
     });
 
     var plot = plotd3.node();
 
     Plotly.d3.json('/rating', function(data) {
-        console.log(data)
+        // console.log(data)
 
         data.forEach(el => {
-            var date = $.datepicker.formatDate('yy-mm-dd', new Date(el.DateOnly));
+            var date = $.datepicker.formatDate('yy-mm-dd', new Date(el.Date));
             el.DateOnly = date;
         });
 
-        var x = data.map(el => el.DateOnly);
+        var x = data.map(el => el.Date);
         var y = data.map(el => el.Rating);
-        console.log(y)
+
 
         var average = y.reduce((sum, el, ind, arr) => {
             sum += el;

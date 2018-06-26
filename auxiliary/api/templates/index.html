@@ -43,6 +43,7 @@
                         <li><a href="#bars">Night Bars</a></li>
                         <li><a href="#">Something else</a></li>
                         <li><a href="#contact_dialog" class="btn" id="contBtn" data-toggle="modal" data-target="#contact_dialog">Rate Us</a></li>
+                        <li><a href="#" class="btn" id="rateBtn">Score</a></li>
                         <!-- <li><button class="cont-button" data-toggle="modal" data-target="#contact_dialog">Contact Us</button></li> -->
                     </ul>
                 </div>
@@ -173,7 +174,30 @@
                         </div>
                     </div>
                 </div>
+        </div>
+
+        <div id="rates-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog map modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span>Rating</span>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe src="{{ url_for('show_rate') }}" frameborder="0"></iframe>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
         <!-- MODALS -------------------------- -->
         <script src="{{ url_for('static', filename='js/logic.js') }}"></script>
     </body>

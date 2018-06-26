@@ -38,6 +38,12 @@ def show_map():
     return send_file('templates/dc_map.html')
 
 
+@dc_dashboard.route('/templates/ratings.html')
+def show_rate():
+
+    return send_file('templates/ratings.html')
+
+
 @dc_dashboard.route('/gunshots')
 def getShots():
 
@@ -70,25 +76,25 @@ def getArenas():
     return jsonify(arenas)
 
 
-@dc_dashboard.route('/form', methods=["POST"])
+@dc_dashboard.route('/form', methods=["GET","POST"])
 def form():
     import datetime
 
-    #if request.method == "POST":
+    if request.method == "POST":
 
-    name = request.form["name"]
-    rating = request.form["rating"]
-    comment = request.form["comment"]
-    date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    date = ('2018-06-21')
+        name = request.form["name"]
+        rating = request.form["rating"]
+        comment = request.form["comment"]
+        date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        date = ('2018-06-20')
 
-    review = {'Name': name, 'Rating': rating, 'Comment': comment, 'Date': date}
-    print(review)
-    mongo.db.feedbacks.insert_one(review)
+        review = {'Name': name, 'Rating': rating, 'Comment': comment, 'Date': date}
+        print(review)
+        mongo.db.feedbacks.insert_one(review)
         
-    return redirect("/", code=302)
+        return redirect("/", code=302)
 
-    # return render_template('index.html')
+    # return render_template('ratings.html')
 
 
 @dc_dashboard.route('/rating')
@@ -98,19 +104,15 @@ def rating():
     all_ratings = getRidOfId(mongo.db.feedbacks.find())
 
     df = pd.DataFrame.from_dict(all_ratings, orient='columns')
-    df['Date'] = pd.to_datetime(df['Date'])
-    df['DateOnly'] = df['Date'].dt.date
+    df['Date'] = pd.to_datetime(df['Date']).dt.strftime('%m/%d/%Y')
     df['Rating'] = pd.to_numeric(df['Rating'])
-    rate = df.groupby('DateOnly').mean().reset_index()
+    # df['Date'] = pd.to_datetime(df['Date'])
+    # df['DateOnly'] = df['Date'].dt.date
+    # df['Rating'] = pd.to_numeric(df['Rating'])
+    rate = df.groupby('Date').mean().reset_index()
     rate['Rating'] = round(rate['Rating'],2)
 
     return jsonify(rate.to_dict(orient='records'))
-
-
-@dc_dashboard.route('/test')
-def test():
-
-    return render_template("rating.html")
 
 
 if __name__ == "__main__":

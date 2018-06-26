@@ -30,6 +30,19 @@ $('#mapsBtn').click(function(){
 	$('#maps-modal').modal({show:true})
 });
 
-$("#submitForm").on('click', function() {
+$('#rateBtn').click(function(){
+	$('#rates-modal').modal({show:true})
+});
+
+$("#submitForm").click(function() {
+
 	$("#contact_form").submit();
+	console.log('form submitted')
+});
+
+$("#submitForm").click(function() {
+	
+	$('#rates-modal').modal({show:true});
+	console.log('rates opened');
+	
 });
