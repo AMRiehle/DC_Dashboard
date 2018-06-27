@@ -111,7 +111,7 @@ function makeResponsive() {
                     redraw: false
                     }
                 }],
-                label: "Play"
+                label: "P"
                 }, {
                 method: "animate",
                 args: [
@@ -127,13 +127,19 @@ function makeResponsive() {
                     }
                     }
                 ],
-                label: "Pause"
+                label: 'S',
                 }]
             }]
             
         }).then(function() {
             Plotly.addFrames(plot, frames);
         });
+
+        Plotly.d3.select('.updatemenu-item-text')
+        .classed('fa fa-play', true)
+        // .classed('glyphicons-play', true)
+
+        console.log('gl added')
 
     });
 
