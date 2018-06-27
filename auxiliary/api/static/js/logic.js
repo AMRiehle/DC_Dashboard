@@ -38,6 +38,10 @@ $('#entBtn').click(function(){
 	$('#ent-modal').modal({show:true})
 });
 
+$('#liqBtn').click(function(){
+	$('#liq-modal').modal({show:true})
+});
+
 $(document).ready(function() {
 	$("#submitForm").click(function(event) {
 		event.preventDefault();
