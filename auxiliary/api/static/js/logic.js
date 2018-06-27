@@ -34,6 +34,10 @@ $('#rateBtn').click(function(){
 	$('#rates-modal').modal({show:true})
 });
 
+$('#entBtn').click(function(){
+	$('#ent-modal').modal({show:true})
+});
+
 $(document).ready(function() {
 	$("#submitForm").click(function(event) {
 		event.preventDefault();

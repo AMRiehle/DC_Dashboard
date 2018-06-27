@@ -133,6 +133,12 @@ def show_tweets():
 
     return send_file('templates/tweets.html')
 
+@dc_dashboard.route('/templates/entertainment.html')
+def show_ent():
+
+    return send_file('templates/entertainment.html')
+
+
 
 if __name__ == "__main__":
     dc_dashboard.run(debug=True)
