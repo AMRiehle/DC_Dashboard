@@ -233,7 +233,7 @@ article {
     /* max-width: 320px; */
 }
 
-.menu li a, #mapsBtn, #sportsBtn {
+.menu li a, #mapsBtn, #sportsBtn{
     font-weight: bold;
     font-size: 20px;
     text-decoration: none;
@@ -255,13 +255,19 @@ article {
 
 /* MAIN------------------------------------------------ */
 
-#mapsBtn {
+#mapsBtn, #sportsBtn {
     margin-top: 12px;
 }
 
 .form-line {
     margin-top: 15px;
 }
+
+.iframeContainer {
+    box-shadow: -1px 3px 6px 0px rgb(176, 196, 226), 1px -1px 3px 0px rgb(218, 234, 248), 3px 3px 6px 0px rgb(177, 175, 177), -1px -1px 3px 0px rgb(221, 221, 221);
+    border: 0.1px, solid;
+    border-radius: 7px;
+  }
 
 .iframe-parent {
     overflow: auto!important;

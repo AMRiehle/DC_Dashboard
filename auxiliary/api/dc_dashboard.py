@@ -112,12 +112,6 @@ def rating():
     return jsonify(rate.to_dict(orient='records'))
 
 
-@dc_dashboard.route('/testtweets')
-def tweets():
-
-    return render_template("tweets.html")
-
-
 @dc_dashboard.route('/grabtweets')
 def grabtweets():
     import time
@@ -134,10 +128,10 @@ def grabtweets():
     return jsonify(tweets)
 
 
-@dc_dashboard.route('/tweets')
-def tw():
-    tweets = getRidOfId(mongo.db.nightlife.find())
-    return jsonify(tweets)
+@dc_dashboard.route('/templates/tweets.html')
+def show_tweets():
+
+    return send_file('templates/tweets.html')
 
 
 if __name__ == "__main__":
