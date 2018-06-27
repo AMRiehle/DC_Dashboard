@@ -3,6 +3,7 @@ quadrantURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/d
 neighborhoodsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/neighborhood-clusters.geojson"
 sportsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/sports-arenas.json"
 theatreURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/theatres.geojson"
+metroURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/metro-stations-district.geojson"
 
 var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" +
     "access_token=pk.eyJ1IjoicmllaGxlYSIsImEiOiJjamlhdWlzcnkxMndiM3FsbWl1aXE0MXJtIn0.g7oyFuzbGAh1O0SXpGI8nw");
@@ -105,7 +106,7 @@ marker4.on('mouseout', function (event) {
   d3.json(theatreURL, function(theatreData) {
   var theatres = L.geoJSON(theatreData, {
     pointToLayer: function(feature, latlng) {
-      return L.marker(latlng, {icon: artsIcon})
+      return L.marker(latlng, {icon: theatreIcon})
     },
     onEachFeature: function (feature, layer) {
     layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4>');
@@ -113,16 +114,30 @@ marker4.on('mouseout', function (event) {
     })  
   var theatresGroup = L.markerClusterGroup();
   theatresGroup.addLayer(theatres)
+
+    d3.json(metroURL, function(metroData) {
+  var metroStops = L.geoJSON(metroData, {
+    pointToLayer: function(feature, latlng) {
+      return L.marker(latlng, {icon: metroIcon})
+    },
+    onEachFeature: function (feature, layer) {
+    layer.bindPopup('<h3>'+feature.properties.NAME+'</h3><h3>Line: '+feature.properties.LINE+'</h3><h4>'+feature.properties.ADDRESS+'</h4>');
+    }
+    })  
+  var metroGroup = L.markerClusterGroup();
+  metroGroup.addLayer(metroStops)
  
   var overlayMaps = {
     "DC Boundary": boundary,
     "DC Quadrants": quad,
     "DC Neighborhoods": neighborhood,
     "Sports Arenas": sportsArenas,
-    "Theatres": theatresGroup
+    "Theatres": theatresGroup,
+    "Metro Stations": metroGroup
   }
 
   L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(myMap);
+})
 })
 })
 })

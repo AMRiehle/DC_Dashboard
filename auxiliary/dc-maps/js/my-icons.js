@@ -95,3 +95,17 @@
     markerColor: "black",
     prefix: "fa"
   });
+
+    var theatreIcon = L.ExtraMarkers.icon({
+    icon: "fa-grin-hearts",
+    iconColor: "white",
+    markerColor: "red",
+    prefix: "fa"
+  });
+
+    var metroIcon = L.ExtraMarkers.icon({
+    icon: "fa-subway",
+    iconColor: "black",
+    markerColor: "white",
+    prefix: "fa"
+  });    
