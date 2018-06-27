@@ -3,44 +3,16 @@ quadrantURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/d
 wardURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/ward-2012.geojson"
 ancURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/advisory-neighborhood-commission-2013.geojson"
 smdURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/single-member-district-2013.geojson"
-neighborhoodsURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/neighborhood-clusters.geojson"
+neighborhoodsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/neighborhood-clusters.geojson"
 zipcodesURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/zip-codes.geojson"
-policeDistrictsURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/police-districts-mpd.geojson"
+
 // gunshot_or_firecracker_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/gunshot-or-firecracker.json"
 // single_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/single-gunshots.json"
 // multi_gunshot_URL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/multi-gunshots.json"
 // sportsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/sports-arenas.json"
 
-  var multiGunIcon = L.ExtraMarkers.icon({
-    icon: "fa-exclamation-triangle",
-    iconColor: "white",
-    markerColor: "red",
-    prefix: "fa"
-  });
-
-    var singleGunIcon = L.ExtraMarkers.icon({
-    icon: "fa-exclamation-triangle",
-    iconColor: "black",
-    markerColor: "yellow",
-    prefix: "fa"
-  });
-
-    var firecrackerIcon = L.ExtraMarkers.icon({
-    icon: "fa-exclamation-triangle",
-    iconColor: "white",
-    markerColor: "blue",
-    prefix: "fa"
-  });
-
-  var sportsIcon = L.ExtraMarkers.icon({
-    icon: "fa-basketball-ball",
-    iconColor: "white",
-    markerColor: "blue",
-    prefix: "fa"
-  });
-
 var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" +
-    'access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NDg1bDA1cjYzM280NHJ5NzlvNDMifQ.d6e-nNyBDtmQCVwVNivz7A');
+    "access_token=pk.eyJ1IjoicmllaGxlYSIsImEiOiJjamlhdWlzcnkxMndiM3FsbWl1aXE0MXJtIn0.g7oyFuzbGAh1O0SXpGI8nw");
 
 var baseMaps = {
   "Street Map": streetmap,
@@ -65,7 +37,7 @@ d3.json(boundaryURL, function(boundaryData) {
   var boundary = L.geoJSON(boundaryData, {
         onEachFeature: function (feature, layer) {
     var marker1 = layer.bindPopup('<h1>Washington, DC</h1><h3>Mayor: Muriel Bowser</h3><h3>Population: 693,972</h3><h3>Area: '+feature.properties.AREAMILES+' Square Miles</h3><h3><a href='+feature.properties.WEB_URL+' target="_blank">Discover DC</a></h3>');
-    marker1.on('mouseover', function (event) {
+    marker1.on('click', function (event) {
   this.openPopup();
 });
   }
@@ -200,7 +172,7 @@ marker3.on('mouseout', function (event) {
       };
     },
   onEachFeature: function (feature, layer) {
-    var marker4 = layer.bindPopup('<h3>'+feature.properties.NBH_NAMES+'</h3>');
+    var marker4 = layer.bindPopup('<h3>'+feature.properties.SHORT_NAME+'</h3><p><b>Neighborhood Cluster:</b> '+feature.properties.NBH_NAMES+'</br><b>Population:</b> '+feature.properties.POPULATION+'</br><b>Percent Children:</b> '+feature.properties.KIDS+'%</br><b>Percent Black:</b> '+feature.properties.BLACK+'%</br><b>Percent White:</b> '+feature.properties.WHITE+'%</br><b>Percent Hispanic:</b> '+feature.properties.HISPANIC+'%</br><b>Percent Asian/Pacific Islander:</b> '+feature.properties.ASIAN+'%</p>');
     marker4.on('mouseover', function (event) {
   this.openPopup();
   layer = event.target
@@ -249,76 +221,18 @@ marker5.on('mouseout', function (event) {
         })
       }
   })
-   d3.json(policeDistrictsURL, function(policeData) {
-  var police = L.geoJSON(policeData, {
-  onEachFeature: function (feature, layer) {
-    var marker5 = layer.bindPopup('<h3>Police District '+feature.properties.DISTRICT+'</h3>');
-    marker5.on('mouseover', function (event) {
-  this.openPopup();
-  layer = event.target
-  layer.setStyle({
-    fillOpacity: 0.8
-  })
-});
-marker5.on('mouseout', function (event) {
-  this.closePopup();
-  layer = event.target
-  layer.setStyle({
-    fillOpacity: 0.2
-  })
-});
-        marker5.on('click', function(event) {
-          myMap.fitBounds(event.target.getBounds());
-        })
-      }
-  })
-
-  d3.json('/gunshots', function(response) {
-  var GunshotOrFirecracker = L.markerClusterGroup();
-  for (var i = 0; i < response.length; i++) {
-    GunshotOrFirecracker.addLayer(L.marker([response[i]['Lat (100m)'], response[i]['Lon (100m)']], {icon: firecrackerIcon})
-        .bindPopup('<h3>'+response[i].Date+'</h3><h3>'+response[i].Time+'</h3><h3>'+response[i].Type+'</h3>'));
-  }
-  d3.json('/singleshots', function(response) {
-  var singleGunshots = L.markerClusterGroup();
-  for (var i = 0; i < response.length; i++) {
-    singleGunshots.addLayer(L.marker([response[i]['Lat (100m)'], response[i]['Lon (100m)']], {icon: singleGunIcon})
-        .bindPopup('<h3>'+response[i].Date+'</h3><h3>'+response[i].Time+'</h3><h3>'+response[i].Type+'</h3>'));
-  }
-  d3.json('/multishots', function(response) {
-  var multiGunshots = L.markerClusterGroup();
-  for (var i = 0; i < response.length; i++) {
-    multiGunshots.addLayer(L.marker([response[i]['Lat (100m)'], response[i]['Lon (100m)']], {icon: multiGunIcon})
-        .bindPopup('<h3>'+response[i].Date+'</h3><h3>'+response[i].Time+'</h3><h3>'+response[i].Type+'</h3>'));
-  }
-  d3.json('/arenas', function(response) {
-  var sportsArenas = L.markerClusterGroup();
-  for (var i = 0; i < response.length; i++) {
-    sportsArenas.addLayer(L.marker([response[i]['LAT'], response[i]['LON']], {icon: sportsIcon})
-        .bindPopup('<h3>'+response[i].STADIUM+'</h3><h4>Seats: '+response[i].CAPACITY+'</h4><h4>Home To: '+response[i].TEAMS+'</h4>'));
-  }
-
+ 
   var overlayMaps = {
     "DC Boundary": boundary,
     "DC Quadrants": quad,
     "DC Wards": ward,
-    "DC Police Districts": police,
     "DC Zipcodes": zipcode, 
     "DC Neighborhoods": neighborhood,
     "DC ANC": anc,
     "DC Single Member Districts": smd,
-    "Gunshot or Firecracker Locations": GunshotOrFirecracker,
-    "Single Gunshot Locations": singleGunshots,
-    "Multiple Gunshot Locations": multiGunshots,
-    "Sports Arenas": sportsArenas
   }
 
   L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(myMap);
-})
-})
-})
-})
-})
 })
 })
 })

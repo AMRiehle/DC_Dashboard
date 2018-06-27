@@ -5,7 +5,12 @@
     <title>Tweets</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" media="screen" href="../static/styles/tweets.css"/>
+	<style>
+		td {min-width: 120px;}
+		#barsBtn {font-weight: bold;}
+		#barsBtn:hover {color: rgb(59, 102, 241);}
+	</style>
+	<!-- <link rel="stylesheet" type="text/css" media="screen" href="../static/styles/tweets.css"/> -->
     <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='images/some.ico') }}"> -->
 	
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -18,7 +23,7 @@
 </head>
 <body>
 	<div class="table-wrapper">
-		<div style="display:flex; justify-content:center;">
+		<div style="display:flex; justify-content:space-between;">
 			<select class="btn btn-secondary dropdown-toggle" id="selBar" onchange="getBar(this.value)" style='margin: 10px'>
 				<option class="opt" selected>Choose bar</option>
 			</select>

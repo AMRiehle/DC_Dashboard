@@ -269,6 +269,10 @@ article {
     border-radius: 7px;
   }
 
+.mapsframe, .tweetsframe {
+    padding: 10px;
+}
+
 .iframe-parent {
     overflow: auto!important;
     -webkit-overflow-scrolling: touch!important;
