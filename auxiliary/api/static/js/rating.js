@@ -68,17 +68,26 @@ function makeResponsive() {
         }], {
             title: 'The average rating is ' + average,
             xaxis: {
-            //   type: 'date',
-            //   range: [
-            //     frames[frames.length-1].data[0].x[0],
-            //     frames[frames.length-1].data[0].x[-1]
-            //   ]
+            showticklabels: true,
+            tickangle: 35,
+            tickfont: {
+                size: 14,
+                color: 'darkblue'
+              },
+            linecolor: 'darkblue',
+            linewidth: 2
             },
             yaxis: {
                 range: [
                 0,
                 5.5
-                ]
+                ],
+                tickfont: {
+                    size: 14,
+                    color: 'darkblue'
+                  },
+                linecolor: 'darkblue',
+                linewidth: 2
             },
             updatemenus: [{
                 x: 0.1,
@@ -94,11 +103,11 @@ function makeResponsive() {
                 args: [null, {
                     fromcurrent: false,
                     transition: {
-                    duration: 300,
+                    duration: 0,
                     easing: 'linear'
                     },
                     frame: {
-                    duration: 500,
+                    duration: 200,
                     redraw: false
                     }
                 }],

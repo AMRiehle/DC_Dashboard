@@ -34,18 +34,11 @@ $('#rateBtn').click(function(){
 	$('#rates-modal').modal({show:true})
 });
 
-// $("#submitForm").click(function() {
-	
-// 	$('#rates-modal').modal({show:true});
-// 	console.log('rates opened');
-	
-// });
-
 $(document).ready(function() {
 	$("#submitForm").click(function(event) {
 		event.preventDefault();
 		$('#rates-modal').modal({show:true});
-		setTimeout(function() {
+		setTimeout(function() { //show rates before submitting
 			$("#contact_form").submit();
 		}, 6000)
 		
