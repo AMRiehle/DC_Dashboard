@@ -25,7 +25,15 @@ d3.json(boundaryURL, function(boundaryData) {
     marker1.on('click', function (event) {
   this.openPopup();
 });
-  }
+  },
+      style: function(feature) {
+      return {
+        // Call the chooseColor function to decide which color to color our neighborhood (color based on borough)
+        fillColor: "black",
+        fillOpacity: 0,
+        weight: 3
+      };
+    }
 })
 
   var myMap = L.map("map", {
