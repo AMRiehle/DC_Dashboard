@@ -106,13 +106,33 @@ def rating():
     df = pd.DataFrame.from_dict(all_ratings, orient='columns')
     df['Date'] = pd.to_datetime(df['Date']).dt.strftime('%m/%d/%Y')
     df['Rating'] = pd.to_numeric(df['Rating'])
-    # df['Date'] = pd.to_datetime(df['Date'])
-    # df['DateOnly'] = df['Date'].dt.date
-    # df['Rating'] = pd.to_numeric(df['Rating'])
     rate = df.groupby('Date').mean().reset_index()
     rate['Rating'] = round(rate['Rating'],2)
 
     return jsonify(rate.to_dict(orient='records'))
+
+
+@dc_dashboard.route('/testtweets')
+def tweets():
+
+    return render_template("tweets.html")
+
+
+@dc_dashboard.route('/grabtweets')
+def grabtweets():
+    import time
+    from nightlifetweets import getTweets
+    
+    nighttweets = getTweets()
+
+    for x in nighttweets:
+        mongo.db.nightlife.replace_one(x, x, upsert=True)
+    print('tweets added')
+    time.sleep(5)
+
+    tweets = getRidOfId(mongo.db.nightlife.find())
+    return jsonify(tweets)
+
 
 
 if __name__ == "__main__":
