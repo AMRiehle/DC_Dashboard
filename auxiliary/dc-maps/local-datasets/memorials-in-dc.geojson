@@ -1,0 +1,123 @@
+{"type":"FeatureCollection","features":[
+
+{"type":"Feature","properties":{"OBJECTID":5,"ADDRESS":"WEST EXECUTIVE AVE & 17TH ST NW","NAME":"FIRST DIVISION MONUMENT","ADDRID":"293211"},"geometry":{"type":"Point","coordinates":[-77.0360860662714,38.896986428641036]}},
+
+{"type":"Feature","properties":{"OBJECTID":10,"ADDRESS":"2101 CONSTITUTION AVE NW","NAME":"ALBERT EINSTEIN MEMORIAL","ADDRID":"242716"},"geometry":{"type":"Point","coordinates":[-77.04846188843628,38.892421263473764]}},
+
+{"type":"Feature","properties":{"OBJECTID":13,"ADDRESS":"FREEDOM PLAZA (13TH ST AND PENNSYLVANIA AVE NW)","NAME":"GENERAL CASIMIR PULASKI (STATUE)","ADDRID":"307053"},"geometry":{"type":"Point","coordinates":[-77.02997183522957,38.89587817987364]}},
+
+{"type":"Feature","properties":{"OBJECTID":16,"ADDRESS":"701 PENNSYLVANIA AVE NW","NAME":"UNITED STATES NAVY MEMORIAL PLAZA","ADDRID":"279889"},"geometry":{"type":"Point","coordinates":[-77.02294440984153,38.8941288844123]}},
+
+{"type":"Feature","properties":{"OBJECTID":20,"ADDRESS":"UNION STATION (COLUMBUS CIRCLE)","NAME":"AMERICAN LEGION FREEDOM BELL","ADDRID":"293243"},"geometry":{"type":"Point","coordinates":[-77.00653024652934,38.89656615515582]}},
+
+{"type":"Feature","properties":{"OBJECTID":23,"ADDRESS":"140 ROCK CREED CHURCH RD NW","NAME":"PRESIDENT LINCOLN'S COTTAGE AT THE SOLDIERS' HOME","ADDRID":"292866"},"geometry":{"type":"Point","coordinates":[-77.01173428140702,38.94170710430903]}},
+
+{"type":"Feature","properties":{"OBJECTID":24,"ADDRESS":"LOGAN CIRCLE","NAME":"MAJOR GENERAL JOHN A. LOGAN","ADDRID":"294285"},"geometry":{"type":"Point","coordinates":[-77.02961953344902,38.90965165011359]}},
+
+{"type":"Feature","properties":{"OBJECTID":26,"ADDRESS":"CONSTITUTION GARDENS","NAME":"MEMORIAL TO THE 56 SIGNERS OF THE DECLARATION OF INDEPENDENCE","ADDRID":"294227"},"geometry":{"type":"Point","coordinates":[-77.0428712038706,38.89109488963679]}},
+
+{"type":"Feature","properties":{"OBJECTID":29,"ADDRESS":"SHERIDAN CIRCLE NW","NAME":"GENERAL PHILIP SHERIDAN","ADDRID":"294344"},"geometry":{"type":"Point","coordinates":[-77.05064602469828,38.91215998046821]}},
+
+{"type":"Feature","properties":{"OBJECTID":30,"ADDRESS":"WASHINGTON CIRCLE","NAME":"LIEUTENANT GENERAL GEORGE WASHINGTON","ADDRID":"294277"},"geometry":{"type":"Point","coordinates":[-77.05011447516131,38.90253639149048]}},
+
+{"type":"Feature","properties":{"OBJECTID":31,"ADDRESS":"SCOTT CIRCLE","NAME":"BREVET LT. GENERAL WINFIELD SCOTT","ADDRID":"294182"},"geometry":{"type":"Point","coordinates":[-77.03653342182761,38.907245319790235]}},
+
+{"type":"Feature","properties":{"OBJECTID":32,"ADDRESS":"DUPONT CIRCLE NW","NAME":"DUPONT CIRCLE FOUNTAIN","ADDRID":"294226"},"geometry":{"type":"Point","coordinates":[-77.0434358251007,38.90965239046696]}},
+
+{"type":"Feature","properties":{"OBJECTID":33,"ADDRESS":"FRANKLIN SQUARE (14TH & K ST NW)","NAME":"COMMODORE JOHN BARRY (BOYLE)","ADDRID":"302945"},"geometry":{"type":"Point","coordinates":[-77.03077452327801,38.90199896790968]}},
+
+{"type":"Feature","properties":{"OBJECTID":34,"ADDRESS":"MCPHERSON SQUARE","NAME":"MAJOR GENERAL JAMES B. MCPHERSON","ADDRID":"294178"},"geometry":{"type":"Point","coordinates":[-77.03412150934165,38.901955432317564]}},
+
+{"type":"Feature","properties":{"OBJECTID":35,"ADDRESS":"FARRAGUT SQUARE","NAME":"ADMIRAL DAVID G. FARRAGUT","ADDRID":"294186"},"geometry":{"type":"Point","coordinates":[-77.0389573208164,38.90193979465511]}},
+
+{"type":"Feature","properties":{"OBJECTID":36,"ADDRESS":"LAFAYETTE SQUARE","NAME":"JACKSON STATUE","ADDRID":"302944"},"geometry":{"type":"Point","coordinates":[-77.03655103273756,38.899516985710704]}},
+
+{"type":"Feature","properties":{"OBJECTID":38,"ADDRESS":"E EXECUTIVE AVE & STATE PLACE NW","NAME":"BOY SCOUTS OF AMERICA MEMORIAL","ADDRID":"294230"},"geometry":{"type":"Point","coordinates":[-77.0342480772618,38.89385159597623]}},
+
+{"type":"Feature","properties":{"OBJECTID":40,"ADDRESS":"GEORGE WASHINGTON MEMORIAL PARKWAY","NAME":"NAVY – MERCHANT MARINE MEMORIAL","ADDRID":"294415"},"geometry":{"type":"Point","coordinates":[-77.04725090111135,38.87628230575873]}},
+
+{"type":"Feature","properties":{"OBJECTID":41,"ADDRESS":"1ST ST SE & EAST CAPITOL ST NE","NAME":"US CAPITOL","ADDRID":"294394"},"geometry":{"type":"Point","coordinates":[-77.01231966318745,38.88900078781168]}},
+
+{"type":"Feature","properties":{"OBJECTID":42,"ADDRESS":"2 15TH ST NW","NAME":"WASHINGTON MONUMENT","ADDRID":"294406"},"geometry":{"type":"Point","coordinates":[-77.03522783044863,38.88946969709221]}},
+
+{"type":"Feature","properties":{"OBJECTID":45,"ADDRESS":"1900 INDEPENDENCE AVE SW","NAME":"DISTRICT OF COLUMBIA WAR MEMORIAL","ADDRID":"310141"},"geometry":{"type":"Point","coordinates":[-77.04348398963317,38.88759304609358]}},
+
+{"type":"Feature","properties":{"OBJECTID":46,"ADDRESS":"THOMAS CIRCLE","NAME":"MAJOR GENERAL GEORGE HENRY THOMAS","ADDRID":"310386"},"geometry":{"type":"Point","coordinates":[-77.03195928464311,38.905657047111525]}},
+
+{"type":"Feature","properties":{"OBJECTID":47,"ADDRESS":"WARD CIRCLE (NEBRASKA AVE & MASSACHUSETTS AVE NW)","NAME":"GENERAL ARTEMAS WARD","ADDRID":"310387"},"geometry":{"type":"Point","coordinates":[-77.08589919922706,38.93792291400912]}},
+
+{"type":"Feature","properties":{"OBJECTID":48,"ADDRESS":"14TH STREET BRIDGE","NAME":"CUBAN FRIENDSHIP URN","ADDRID":"300874"},"geometry":{"type":"Point","coordinates":[-77.03825880064451,38.87855324021861]}},
+
+{"type":"Feature","properties":{"OBJECTID":54,"ADDRESS":"1750 INDEPENDENCE AVE SW","NAME":"WORLD WAR II MEMORIAL","ADDRID":"294407"},"geometry":{"type":"Point","coordinates":[-77.0405228605643,38.88939555268632]}},
+
+{"type":"Feature","properties":{"OBJECTID":58,"ADDRESS":"5 HENRY BACON DR NW","NAME":"THEODORE ROOSEVELT ISLAND","ADDRID":"294271"},"geometry":{"type":"Point","coordinates":[-77.06283233171777,38.89618449653722]}},
+
+{"type":"Feature","properties":{"OBJECTID":59,"ADDRESS":"5 HENRY BACON DR NW","NAME":"VIETNAM WOMEN'S WAR MEMORIAL","ADDRID":"294271"},"geometry":{"type":"Point","coordinates":[-77.04703839974341,38.89028343635447]}},
+
+{"type":"Feature","properties":{"OBJECTID":60,"ADDRESS":"5 HENRY BACON DR NW","NAME":"VIETNAM VETERANS WAR MEMORIAL","ADDRID":"294271"},"geometry":{"type":"Point","coordinates":[-77.04771438874293,38.89124452077155]}},
+
+{"type":"Feature","properties":{"OBJECTID":61,"ADDRESS":"UNION STATION (COLUMBUS CIRCLE)","NAME":"THE PROGRESS OF RAILROADING","ADDRID":"293243"},"geometry":{"type":"Point","coordinates":[-77.00637097166317,38.89708492599075]}},
+
+{"type":"Feature","properties":{"OBJECTID":65,"ADDRESS":"E EXECUTIVE AVE & STATE PLACE NW","NAME":"SECOND INFANTRY DIVISION MEMORIAL","ADDRID":"294230"},"geometry":{"type":"Point","coordinates":[-77.0379448533821,38.89260542450606]}},
+
+{"type":"Feature","properties":{"OBJECTID":66,"ADDRESS":"E EXECUTIVE AVE & STATE PLACE NW","NAME":"ZERO MILESTONE","ADDRID":"294230"},"geometry":{"type":"Point","coordinates":[-77.03657871015959,38.89511666803995]}},
+
+{"type":"Feature","properties":{"OBJECTID":71,"ADDRESS":"14TH STREET BRIDGE","NAME":"KOREAN WAR VETERANS MEMORIAL","ADDRID":"300874"},"geometry":{"type":"Point","coordinates":[-77.04766700203854,38.8877871713776]}},
+
+{"type":"Feature","properties":{"OBJECTID":72,"ADDRESS":"LAFAYETTE SQUARE","NAME":"MAJOR GENERAL MARQUIS GILBERT DE LAFAYETTE","ADDRID":"302944"},"geometry":{"type":"Point","coordinates":[-77.03537779187609,38.89901010496247]}},
+
+{"type":"Feature","properties":{"OBJECTID":73,"ADDRESS":"LAFAYETTE SQUARE","NAME":"MAJOR GENERAL COMTE JEAN DE ROCHAMBEAU","ADDRID":"302944"},"geometry":{"type":"Point","coordinates":[-77.03771714360207,38.899009413600005]}},
+
+{"type":"Feature","properties":{"OBJECTID":74,"ADDRESS":"LAFAYETTE SQUARE","NAME":"MAJOR GENERAL FRIEDRICH WILHELM VON STREUBEN","ADDRID":"302944"},"geometry":{"type":"Point","coordinates":[-77.0377079160333,38.90001809997073]}},
+
+{"type":"Feature","properties":{"OBJECTID":75,"ADDRESS":"LAFAYETTE SQUARE","NAME":"BRIGADIER GENERAL THADDEUS KOSCIUSZKO","ADDRID":"302944"},"geometry":{"type":"Point","coordinates":[-77.03537758203612,38.90001882894492]}},
+
+{"type":"Feature","properties":{"OBJECTID":78,"ADDRESS":"1964 INDEPENDENCE AVE SW","NAME":"MARTIN LUTHER KING, JR. MEMORIAL","ADDRID":"310141"},"geometry":{"type":"Point","coordinates":[-77.04423318307471,38.886223231223475]}},
+
+{"type":"Feature","properties":{"OBJECTID":79,"ADDRESS":"1850 WEST BASIN DR SW","NAME":"FRANKLIN DELANO ROOSEVELT MEMORIAL","ADDRID":"310141"},"geometry":{"type":"Point","coordinates":[-77.04408071443602,38.88397961904199]}},
+
+{"type":"Feature","properties":{"OBJECTID":80,"ADDRESS":"701 E BASIN DR SW","NAME":"LINCOLN MEMORIAL","ADDRID":"308233"},"geometry":{"type":"Point","coordinates":[-77.05018389318994,38.88929091200698]}},
+
+{"type":"Feature","properties":{"OBJECTID":102,"ADDRESS":"13TH & EAST CAPITOL ST NE","NAME":"EMANCIPATION MEMORIAL","ADDRID":"903605"},"geometry":{"type":"Point","coordinates":[-76.98918792312585,38.889830781106866]}},
+
+{"type":"Feature","properties":{"OBJECTID":104,"ADDRESS":"2ND ST AND WASHINGTON AVE SW","NAME":"AMERICAN VETERANS DISABLED FOR LIFE MEMORIAL","ADDRID":"904664"},"geometry":{"type":"Point","coordinates":[-77.0131181359777,38.88615395181017]}},
+
+{"type":"Feature","properties":{"OBJECTID":111,"ADDRESS":"1ST AVE & P ST SW","NAME":"TITANIC MEMORIAL (WASHINGTON, D.C.)","ADDRID":"902754"},"geometry":{"type":"Point","coordinates":[-77.01931734355888,38.871965724031696]}},
+
+{"type":"Feature","properties":{"OBJECTID":115,"ADDRESS":"4TH & E ST NW","NAME":"NATIONAL LAW ENFORCEMENT OFFICERS MEMORIAL","ADDRID":"900823"},"geometry":{"type":"Point","coordinates":[-77.01748712466114,38.89666513137949]}},
+
+{"type":"Feature","properties":{"OBJECTID":116,"ADDRESS":"NEW JERSEY AVE & G ST NW","NAME":"VICTIMS OF COMMUNISM MEMORIAL","ADDRID":"903933"},"geometry":{"type":"Point","coordinates":[-77.0120840769324,38.89852600471515]}},
+
+{"type":"Feature","properties":{"OBJECTID":120,"ADDRESS":"WISCONSIN AVE & M STREET NW","NAME":"CHESAPEAKE AND OHIO CANAL COMMEMORATIVE OBELISK","ADDRID":"905660"},"geometry":{"type":"Point","coordinates":[-77.06290089834644,38.904356065506654]}},
+
+{"type":"Feature","properties":{"OBJECTID":124,"ADDRESS":"NEW JERSEY AVE & D ST NW","NAME":"MEMORIAL TO JAPANESE-AMERICAN PATRIOTISM IN WORLD WAR II","ADDRID":"900806"},"geometry":{"type":"Point","coordinates":[-77.01047749351726,38.894523515884]}},
+
+{"type":"Feature","properties":{"OBJECTID":125,"ADDRESS":"10TH ST & U ST NW","NAME":"AFRICAN AMERICAN CIVIL WAR MEMORIAL","ADDRID":"903437"},"geometry":{"type":"Point","coordinates":[-77.02596555522771,38.91654182607902]}},
+
+{"type":"Feature","properties":{"OBJECTID":134,"ADDRESS":"PENNSYLVANIA AVE & 14TH ST NW","NAME":"WORLD WAR I MEMORIAL","ADDRID":"902090"},"geometry":{"type":"Point","coordinates":[-77.03264956738096,38.89605690248037]}},
+
+{"type":"Feature","properties":{"OBJECTID":141,"ADDRESS":"EAST BASIN DRIVE SW","NAME":"JEFFERSON MEMORIAL","ADDRID":"294411"},"geometry":{"type":"Point","coordinates":[-77.03654320042097,38.881325713574476]}},
+
+{"type":"Feature","properties":{"OBJECTID":177,"ADDRESS":"17TH STREET NW","NAME":"CORCORAN LIONS","ADDRID":"294184"},"geometry":{"type":"Point","coordinates":[-77.0390982681083,38.89677173307592]}},
+
+{"type":"Feature","properties":{"OBJECTID":181,"ADDRESS":"FLORIDA AVENUE NW","NAME":"DUKE ELLINGTON STATUE","ADDRID":"310369"},"geometry":{"type":"Point","coordinates":[-77.02063037921909,38.91555895549755]}},
+
+{"type":"Feature","properties":{"OBJECTID":183,"ADDRESS":"STATE PLACE NW","NAME":"FIRST DIVISION MONUMENT","ADDRID":"294347"},"geometry":{"type":"Point","coordinates":[-77.03871453768156,38.896171543321984]}},
+
+{"type":"Feature","properties":{"OBJECTID":184,"ADDRESS":"C STREET NW","NAME":"FOUNDERS OF THE DAUGHTERS OF THE AMERICAN REVOLUTION MEMORIAL","ADDRID":"310396"},"geometry":{"type":"Point","coordinates":[-77.04050200268497,38.89373309233399]}},
+
+{"type":"Feature","properties":{"OBJECTID":200,"ADDRESS":"D STREET NW","NAME":"RED CROSS MEN & WOMEN KILLED IN SERVICE","ADDRID":"294239"},"geometry":{"type":"Point","coordinates":[-77.04078245862166,38.89475058027616]}},
+
+{"type":"Feature","properties":{"OBJECTID":207,"ADDRESS":"GARFIELD CIRCLE SW","NAME":"LAMP STANDARDS","ADDRID":"294413"},"geometry":{"type":"Point","coordinates":[-77.0116739707613,38.889262729483114]}},
+
+{"type":"Feature","properties":{"OBJECTID":212,"ADDRESS":"INDEPENDENCE AVENUE SW","NAME":"REFLECTING POOL","ADDRID":"304149"},"geometry":{"type":"Point","coordinates":[-77.04478311616717,38.889387420819936]}},
+
+{"type":"Feature","properties":{"OBJECTID":225,"ADDRESS":"OHIO DRIVE SW","NAME":"THE WATERGATE STEPS","ADDRID":"304243"},"geometry":{"type":"Point","coordinates":[-77.05239972495666,38.88924849590636]}},
+
+{"type":"Feature","properties":{"OBJECTID":226,"ADDRESS":"FRANCIS SCOTT KEY BRIDGE NW","NAME":"THEODORE ROOSEVELT MEMORIAL","ADDRID":"307328"},"geometry":{"type":"Point","coordinates":[-77.06397212008093,38.89729117205268]}},
+
+{"type":"Feature","properties":{"OBJECTID":233,"ADDRESS":"MARYLAND AVENUE NE","NAME":"VETERANS OF FOREIGN WARS MEMORIAL","ADDRID":"294384"},"geometry":{"type":"Point","coordinates":[-77.00329576460733,38.89232422225521]}},
+
+{"type":"Feature","properties":{"OBJECTID":234,"ADDRESS":"HENRY BACON DRIVE NW","NAME":"WOMEN WHO SERVED IN VIETNAM","ADDRID":"294271"},"geometry":{"type":"Point","coordinates":[-77.04698314414551,38.89054710585741]}},
+
+{"type":"Feature","properties":{"OBJECTID":235,"ADDRESS":"V STREET SE","NAME":"WORLD'S LARGEST CHAIR","ADDRID":"294401"},"geometry":{"type":"Point","coordinates":[-76.98968758493251,38.86539475205842]}}]}
