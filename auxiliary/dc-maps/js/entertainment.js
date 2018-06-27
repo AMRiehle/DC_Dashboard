@@ -3,6 +3,10 @@ quadrantURL = "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/d
 neighborhoodsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/neighborhood-clusters.geojson"
 sportsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/sports-arenas.json"
 theatreURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/theatres.geojson"
+museumsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/museums-in-dc.geojson"
+memorialsURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/memorials-in-dc.geojson"
+RestaurantURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/restaurants.geojson"
+barsURL =  "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/taverns-and-nightclubs.geojson"
 metroURL = "https://raw.githubusercontent.com/AMRiehle/DC_Dashboard/master/auxiliary/dc-maps/local-datasets/metro-stations-dc.geojson"
 
 var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" +
@@ -126,17 +130,73 @@ marker4.on('mouseout', function (event) {
     })  
   var metroGroup = L.markerClusterGroup();
   metroGroup.addLayer(metroStops)
+
+      d3.json(museumsURL, function(museumData) {
+  var museums = L.geoJSON(museumData, {
+    pointToLayer: function(feature, latlng) {
+      return L.marker(latlng, {icon: museumIcon})
+    },
+    onEachFeature: function (feature, layer) {
+    layer.bindPopup('<h3>'+feature.properties.NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4>');
+    }
+    })  
+  var museumGroup = L.markerClusterGroup();
+  museumGroup.addLayer(museums)
+
+        d3.json(memorialsURL, function(memorialsData) {
+  var memorials = L.geoJSON(memorialsData, {
+    pointToLayer: function(feature, latlng) {
+      return L.marker(latlng, {icon: memorialsIcon})
+    },
+    onEachFeature: function (feature, layer) {
+    layer.bindPopup('<h3>'+feature.properties.NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4>');
+    }
+    })  
+  var memorialsGroup = L.markerClusterGroup();
+  memorialsGroup.addLayer(memorials)
  
+        d3.json(RestaurantURL, function(RestaurantData) {
+  var restaurants = L.geoJSON(RestaurantData, {
+    pointToLayer: function(feature, latlng) {
+      return L.marker(latlng, {icon: restaurantsIcon})
+    },
+    onEachFeature: function (feature, layer) {
+   layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4><h4>License Type: '+feature.properties.TYPE+'</h4>');
+     }
+    })  
+  var RestaurantGroup = L.markerClusterGroup();
+  RestaurantGroup.addLayer(restaurants)
+
+      d3.json(barsURL, function(barsData) {
+  var bars = L.geoJSON(barsData, {
+    pointToLayer: function(feature, latlng) {
+      return L.marker(latlng, {icon: nightclubsIcon})
+    },
+    onEachFeature: function (feature, layer) {
+   layer.bindPopup('<h3>'+feature.properties.TRADE_NAME+'</h3><h4>'+feature.properties.ADDRESS+'</h4><h4>License Type: '+feature.properties.TYPE+'</h4>');
+     }
+    })  
+  var barsGroup = L.markerClusterGroup();
+  barsGroup.addLayer(bars)
+
   var overlayMaps = {
     "DC Boundary": boundary,
     "DC Quadrants": quad,
     "DC Neighborhoods": neighborhood,
     "Sports Arenas": sportsArenas,
     "Theatres": theatresGroup,
-    "Metro Stations": metroGroup
+    "Museums": museumGroup,
+    "Monuments and Memorials": memorialsGroup,
+    "Metro Stations": metroGroup,
+    "Restaurants": RestaurantGroup,
+    "Taverns, Bars, and Nightclubs": barsGroup
   }
 
   L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(myMap);
+})
+})
+})
+})
 })
 })
 })

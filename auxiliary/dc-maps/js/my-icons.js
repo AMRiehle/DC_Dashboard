@@ -109,3 +109,17 @@
     markerColor: "white",
     prefix: "fa"
   });    
+
+    var museumIcon = L.ExtraMarkers.icon({
+    icon: "fa-hotel",
+    iconColor: "white",
+    markerColor: "purple",
+    prefix: "fa"
+  });  
+
+    var memorialsIcon = L.ExtraMarkers.icon({
+    icon: "fa-monument",
+    iconColor: "white",
+    markerColor: "green",
+    prefix: "fa"
+  });      
