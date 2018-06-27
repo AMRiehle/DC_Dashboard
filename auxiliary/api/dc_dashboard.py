@@ -86,7 +86,7 @@ def form():
         rating = request.form["rating"]
         comment = request.form["comment"]
         date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        date = ('2018-06-20')
+        date = ('2018-06-17')
 
         review = {'Name': name, 'Rating': rating, 'Comment': comment, 'Date': date}
         print(review)

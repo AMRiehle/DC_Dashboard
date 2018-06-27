@@ -34,15 +34,20 @@ $('#rateBtn').click(function(){
 	$('#rates-modal').modal({show:true})
 });
 
-$("#submitForm").click(function() {
-
-	$("#contact_form").submit();
-	console.log('form submitted')
-});
-
-$("#submitForm").click(function() {
+// $("#submitForm").click(function() {
 	
-	$('#rates-modal').modal({show:true});
-	console.log('rates opened');
+// 	$('#rates-modal').modal({show:true});
+// 	console.log('rates opened');
 	
+// });
+
+$(document).ready(function() {
+	$("#submitForm").click(function(event) {
+		event.preventDefault();
+		$('#rates-modal').modal({show:true});
+		setTimeout(function() {
+			$("#contact_form").submit();
+		}, 6000)
+		
+	});
 });
