@@ -128,11 +128,16 @@ def grabtweets():
     for x in nighttweets:
         mongo.db.nightlife.replace_one(x, x, upsert=True)
     print('tweets added')
-    time.sleep(5)
+    time.sleep(3)
 
     tweets = getRidOfId(mongo.db.nightlife.find())
     return jsonify(tweets)
 
+
+@dc_dashboard.route('/tweets')
+def tw():
+    tweets = getRidOfId(mongo.db.nightlife.find())
+    return jsonify(tweets)
 
 
 if __name__ == "__main__":
