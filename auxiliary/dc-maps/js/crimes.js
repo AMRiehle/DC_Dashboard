@@ -227,7 +227,7 @@ d3.json(data2012URL, function(data2012response) {
         sex_abuse.push([feature.geometry.coordinates[1], feature.geometry.coordinates[0]])
       }
       else {
-        homicide.push(feature.geometry.coordinates)
+        homicide.push([feature.geometry.coordinates[1], feature.geometry.coordinates[0]])
       }
   }
 })
