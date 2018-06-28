@@ -116,6 +116,10 @@ header {
     grid-area: tweets;
 }
 
+.shots {
+    grid-area: shots;
+}
+
 article {
     display: grid;
     grid-template-columns: 1.7fr 0.5fr 1.7fr;
@@ -124,7 +128,8 @@ article {
     "intro intro intro"
     "map-info map map"
     "sports sports sports-info"
-    "tweets tweets tweets";
+    "tweets tweets tweets"
+    "shots shots shots";
 }
 
 /* MEDIA QUERY LAYOUT------------------------------------------------ */
@@ -197,7 +202,8 @@ article {
         "map"
         "sports-info"
         "sports"
-        "tweets";
+        "tweets"
+        "shots";
     }
 }
 

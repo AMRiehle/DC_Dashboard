@@ -44,36 +44,36 @@ def show_rate():
     return send_file('templates/ratings.html')
 
 
-@dc_dashboard.route('/gunshots')
-def getShots():
+# @dc_dashboard.route('/gunshots')
+# def getShots():
 
-    allshots = getRidOfId(mongo.db.gunshots.find())
+#     allshots = getRidOfId(mongo.db.gunshots.find())
 
-    return jsonify(allshots)
-
-
-@dc_dashboard.route('/singleshots')
-def getSingle():
-
-    single = getRidOfId(mongo.db.singlegunshot.find())
-
-    return jsonify(single)
+#     return jsonify(allshots)
 
 
-@dc_dashboard.route('/multishots')
-def getMulti():
+# @dc_dashboard.route('/singleshots')
+# def getSingle():
 
-    multi = getRidOfId(mongo.db.multigunshot.find())
+#     single = getRidOfId(mongo.db.singlegunshot.find())
 
-    return jsonify(multi)
+#     return jsonify(single)
 
 
-@dc_dashboard.route('/arenas')
-def getArenas():
+# @dc_dashboard.route('/multishots')
+# def getMulti():
 
-    arenas = getRidOfId(mongo.db.arenas.find())
+#     multi = getRidOfId(mongo.db.multigunshot.find())
 
-    return jsonify(arenas)
+#     return jsonify(multi)
+
+
+# @dc_dashboard.route('/arenas')
+# def getArenas():
+
+#     arenas = getRidOfId(mongo.db.arenas.find())
+
+#     return jsonify(arenas)
 
 
 @dc_dashboard.route('/form', methods=["GET","POST"])
@@ -145,6 +145,11 @@ def show_liq():
 
     return send_file('templates/abra.html')
 
+
+@dc_dashboard.route('/templates/ShotsMap.html')
+def show_shots():
+
+    return send_file('templates/ShotsMap.html')
 
 
 if __name__ == "__main__":
