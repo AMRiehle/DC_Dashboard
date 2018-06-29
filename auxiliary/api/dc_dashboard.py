@@ -114,7 +114,7 @@ def rating():
 
 @dc_dashboard.route('/grabtweets')
 def grabtweets():
-    import time
+    # import time
     from nightlifetweets import getTweets
     
     nighttweets = getTweets()
@@ -122,7 +122,7 @@ def grabtweets():
     for x in nighttweets:
         mongo.db.nightlife.replace_one(x, x, upsert=True)
     print('tweets added')
-    time.sleep(3)
+    # time.sleep(3)
 
     tweets = getRidOfId(mongo.db.nightlife.find())
     return jsonify(tweets)
