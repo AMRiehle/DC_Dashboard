@@ -58,13 +58,24 @@ article {
     /* background: rgb(236, 122, 198); */
 }
 
+footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+}
+
+footer p{
+    font-size: 15px;
+}
+
 .wrapper {
     display: grid;
     grid-template-columns: 0.5fr 3fr;
     grid-template-rows: 250px auto;
     grid-template-areas: 
         "header header"
-        "aside article";
+        "aside article"
+        'aside footer';
 }
 
 /* HEADER LAYOUT------------------------------------------------ */
@@ -110,6 +121,7 @@ header {
 .sports-info {
     grid-area: sports-info;
     align-self: flex-start;
+    margin-left: 20px;
 }
 
 .tweets {
@@ -141,7 +153,8 @@ article {
         grid-template-rows: 280px auto;
         grid-template-areas: 
             "header header"
-            "aside article";
+            "aside article"
+            'aside footer';
     }
 
     header {
@@ -159,7 +172,8 @@ article {
         grid-template-areas: 
             "header"
             "aside"
-            "article";
+            "article"
+            'footer';
     }
 
     header {
@@ -213,7 +227,8 @@ article {
         grid-template-rows: 280px auto;
         grid-template-areas: 
             "header"
-            "article";
+            "article"
+            'footer';
     }
     aside {
         display: none;
@@ -293,4 +308,8 @@ article {
 .iframe-child {
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
+}
+
+.map-info, .map, .sports-info, .sports, .tweets, .shots {
+    padding-bottom: 50px;
 }
