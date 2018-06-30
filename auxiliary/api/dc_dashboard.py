@@ -44,38 +44,6 @@ def show_rate():
     return send_file('templates/ratings.html')
 
 
-# @dc_dashboard.route('/gunshots')
-# def getShots():
-
-#     allshots = getRidOfId(mongo.db.gunshots.find())
-
-#     return jsonify(allshots)
-
-
-# @dc_dashboard.route('/singleshots')
-# def getSingle():
-
-#     single = getRidOfId(mongo.db.singlegunshot.find())
-
-#     return jsonify(single)
-
-
-# @dc_dashboard.route('/multishots')
-# def getMulti():
-
-#     multi = getRidOfId(mongo.db.multigunshot.find())
-
-#     return jsonify(multi)
-
-
-# @dc_dashboard.route('/arenas')
-# def getArenas():
-
-#     arenas = getRidOfId(mongo.db.arenas.find())
-
-#     return jsonify(arenas)
-
-
 @dc_dashboard.route('/form', methods=["GET","POST"])
 def form():
     import datetime
@@ -154,3 +122,35 @@ def show_shots():
 
 if __name__ == "__main__":
     dc_dashboard.run(debug=True)
+
+
+# @dc_dashboard.route('/gunshots')
+# def getShots():
+
+#     allshots = getRidOfId(mongo.db.gunshots.find())
+
+#     return jsonify(allshots)
+
+
+# @dc_dashboard.route('/singleshots')
+# def getSingle():
+
+#     single = getRidOfId(mongo.db.singlegunshot.find())
+
+#     return jsonify(single)
+
+
+# @dc_dashboard.route('/multishots')
+# def getMulti():
+
+#     multi = getRidOfId(mongo.db.multigunshot.find())
+
+#     return jsonify(multi)
+
+
+# @dc_dashboard.route('/arenas')
+# def getArenas():
+
+#     arenas = getRidOfId(mongo.db.arenas.find())
+
+#     return jsonify(arenas)
