@@ -1,0 +1,1 @@
+web: gunicorn dc_dashboard.app:app
