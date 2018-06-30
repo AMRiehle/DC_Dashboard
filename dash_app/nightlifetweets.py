@@ -1,13 +1,13 @@
-
-import pymongo
 import pandas as pd
 import tweepy
 from config import consumer_key, consumer_secret, access_token, access_token_secret
+import os
 
-conn = "mongodb://localhost:27017"
-client = pymongo.MongoClient(conn)
-db = client.dc_dashboard
-collection=db.nightlife
+
+# consumer_key = os.environ.get('consumer_key')
+# consumer_secret = os.environ.get('consumer_secret')
+# access_token = os.environ.get('access_token')
+# access_token_secret = os.environ.get('access_token_secret')
 
 
 def getTweets():
@@ -33,7 +33,8 @@ def getTweets():
 
         for x in range(1):
 
-            public_tweets = api.search(target, count=3, result_type="recent", max_id=oldest_tweet)
+            public_tweets = api.search(target, count=2, result_type="recent", max_id=oldest_tweet)
+            print('public tweets')
 
             for tweet in public_tweets["statuses"]:
                 bar.append(target)

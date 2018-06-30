@@ -1,9 +1,18 @@
 from flask import Flask, render_template, jsonify, redirect, send_file, request
 from flask_pymongo import PyMongo
-from functions import getRidOfId
+from .functions import getRidOfId
+import os
+
+file_path = os.path.abspath(os.getcwd()) + "/dash_app/db/belly_button_biodiversity.sqlite"
+
+MONGO_URL = os.environ.get('MONGO_URL')
+if not MONGO_URL:
+    MONGO_URL = "mongodb://localhost:27017/";
 
 
 dc_dashboard = Flask(__name__)
+
+dc_dashboard.config['MONGO_URI'] = MONGO_URL
 mongo = PyMongo(dc_dashboard)
 
 @dc_dashboard.route('/')
@@ -42,38 +51,6 @@ def show_map():
 def show_rate():
 
     return send_file('templates/ratings.html')
-
-
-# @dc_dashboard.route('/gunshots')
-# def getShots():
-
-#     allshots = getRidOfId(mongo.db.gunshots.find())
-
-#     return jsonify(allshots)
-
-
-# @dc_dashboard.route('/singleshots')
-# def getSingle():
-
-#     single = getRidOfId(mongo.db.singlegunshot.find())
-
-#     return jsonify(single)
-
-
-# @dc_dashboard.route('/multishots')
-# def getMulti():
-
-#     multi = getRidOfId(mongo.db.multigunshot.find())
-
-#     return jsonify(multi)
-
-
-# @dc_dashboard.route('/arenas')
-# def getArenas():
-
-#     arenas = getRidOfId(mongo.db.arenas.find())
-
-#     return jsonify(arenas)
 
 
 @dc_dashboard.route('/form', methods=["GET","POST"])
@@ -153,4 +130,36 @@ def show_shots():
 
 
 if __name__ == "__main__":
-    dc_dashboard.run(debug=True)
+    dc_dashboard.run()
+
+
+# @dc_dashboard.route('/gunshots')
+# def getShots():
+
+#     allshots = getRidOfId(mongo.db.gunshots.find())
+
+#     return jsonify(allshots)
+
+
+# @dc_dashboard.route('/singleshots')
+# def getSingle():
+
+#     single = getRidOfId(mongo.db.singlegunshot.find())
+
+#     return jsonify(single)
+
+
+# @dc_dashboard.route('/multishots')
+# def getMulti():
+
+#     multi = getRidOfId(mongo.db.multigunshot.find())
+
+#     return jsonify(multi)
+
+
+# @dc_dashboard.route('/arenas')
+# def getArenas():
+
+#     arenas = getRidOfId(mongo.db.arenas.find())
+
+#     return jsonify(arenas)
