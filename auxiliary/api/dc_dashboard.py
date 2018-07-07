@@ -119,10 +119,8 @@ def show_shots():
 
     return send_file('templates/ShotsMap.html')
 
-
 if __name__ == "__main__":
     dc_dashboard.run(debug=True)
-
 
 # @dc_dashboard.route('/gunshots')
 # def getShots():
