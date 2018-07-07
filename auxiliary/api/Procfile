@@ -1,1 +1,1 @@
-web: python dc_dashboard.py runserver "0.0.0.0:$PORT"
+web: gunicorn dc_dashboard:dc_dashboard
