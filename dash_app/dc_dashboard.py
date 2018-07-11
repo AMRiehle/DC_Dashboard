@@ -3,8 +3,6 @@ from flask_pymongo import PyMongo
 from .functions import getRidOfId
 import os
 
-file_path = os.path.abspath(os.getcwd()) + "/dash_app/db/belly_button_biodiversity.sqlite"
-
 MONGO_URL = os.environ.get('MONGO_URL')
 if not MONGO_URL:
     MONGO_URL = "mongodb://localhost:27017/";
